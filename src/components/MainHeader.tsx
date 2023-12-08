@@ -130,6 +130,7 @@ const MainHeader = () => {
             alt="unlock"
           />
           <CustomInput
+            disabled={fillingLock}
             onChange={(e) => setFilling(e.target.value)}
             id="customInput"
             type="text"
@@ -146,6 +147,7 @@ const MainHeader = () => {
             alt="unlock"
           />
           <CustomInput
+            disabled={ingredientsLock}
             onChange={(e) => setIngredients(e.target.value)}
             id="customInput"
             type="text"
