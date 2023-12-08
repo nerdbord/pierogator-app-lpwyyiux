@@ -1,8 +1,13 @@
-import "./App.css";
-import DumplingSection from "./components/dumplingSection/DumplingSection";
+import GlobalStyle from "./GlobalStyles";
+import MainHeader from "./components/MainHeader";
 
 function App() {
-  return <DumplingSection></DumplingSection>;
-}
+  return (
+    <>
+      <MainHeader />
+      <GlobalStyle />
+    </>
+  );
+
 
 export default App;
