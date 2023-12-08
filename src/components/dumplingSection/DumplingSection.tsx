@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const dumplingSectionInterface = styled.
+const dumplingSectionInterface = styled.div``;
 
 export default function DumplingSection() {
   return (
