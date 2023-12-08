@@ -109,7 +109,7 @@ const MainHeader = () => {
         <CustomInputContainer>
           <ButtonUnlockStyled
             onClick={() => setDoughLock(!doughLock)}
-            src={doughLock ? ButtonUnlock : ButtonLock}
+            src={doughLock ? ButtonLock : ButtonUnlock}
             alt="unlock"
           />
           <CustomInput
@@ -126,7 +126,7 @@ const MainHeader = () => {
         <CustomInputContainer>
           <ButtonUnlockStyled
             onClick={() => setFillingLock(!fillingLock)}
-            src={fillingLock ? ButtonUnlock : ButtonLock}
+            src={fillingLock ? ButtonLock : ButtonUnlock}
             alt="unlock"
           />
           <CustomInput
@@ -143,7 +143,7 @@ const MainHeader = () => {
         <CustomInputContainer>
           <ButtonUnlockStyled
             onClick={() => setIngredientsLock(!ingredientsLock)}
-            src={ingredientsLock ? ButtonUnlock : ButtonLock}
+            src={ingredientsLock ? ButtonLock : ButtonUnlock}
             alt="unlock"
           />
           <CustomInput
