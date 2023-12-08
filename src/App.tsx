@@ -1,7 +1,8 @@
 import "./App.css";
+import DumplingSection from "./components/dumplingSection/DumplingSection";
 
 function App() {
-  return <></>;
+  return <DumplingSection></DumplingSection>;
 }
 
 export default App;
