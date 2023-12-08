@@ -3,29 +3,30 @@ import create from "zustand";
 interface StoreState {
   dough: string;
   filling: string;
-  fillingLock: boolean;
-  doughLock: boolean;
+  fillingLockView: boolean;
+  doughLockView: boolean;
   ingredients: string;
-  ingredientsLock: boolean;
-  setIngredientsLock: (ingredientsLock: boolean) => void;
+  ingredientsLockView: boolean;
+  setIngredientsLockView: (ingredientsLockView: boolean) => void;
   setIngredients: (ingredients: string) => void;
-  setFillingLock: (fillingLock: boolean) => void;
+  setFillingLockView: (fillingLockView: boolean) => void;
   setFilling: (filling: string) => void;
-  setDoughLock: (doughLock: boolean) => void;
+  setDoughLockView: (doughLockView: boolean) => void;
   setDough: (dough: string) => void;
 }
 
 export const useStore = create<StoreState>((set) => ({
   dough: "",
-  doughLock: false,
+  doughLockView: false,
   filling: "",
   ingredients: "",
-  ingredientsLock: false,
-  fillingLock: false,
-  setIngredientsLock: (ingredientsLock: boolean) => set({ ingredientsLock }),
+  ingredientsLockView: false,
+  fillingLockView: false,
+  setIngredientsLockView: (ingredientsLockView: boolean) =>
+    set({ ingredientsLockView }),
   setIngredients: (ingredients: string) => set({ ingredients }),
-  setFillingLock: (fillingLock: boolean) => set({ fillingLock }),
+  setFillingLockView: (fillingLockView: boolean) => set({ fillingLockView }),
   setFilling: (filling: string) => set({ filling }),
-  setDoughLock: (doughLock: boolean) => set({ doughLock }),
+  setDoughLockView: (doughLockView: boolean) => set({ doughLockView }),
   setDough: (dough: string) => set({ dough }),
 }));

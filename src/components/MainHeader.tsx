@@ -81,15 +81,15 @@ const MainHeader = () => {
   const {
     dough,
     setDough,
-    doughLock,
-    setDoughLock,
+    doughLockView,
+    setDoughLockView,
     setFilling,
-    setFillingLock,
-    fillingLock,
+    setFillingLockView,
+    fillingLockView,
     ingredients,
     setIngredients,
-    setIngredientsLock,
-    ingredientsLock,
+    setIngredientsLockView,
+    ingredientsLockView,
     filling,
   } = useStore();
 
@@ -108,12 +108,12 @@ const MainHeader = () => {
         <Label htmlFor="customInput">Ciasto</Label>
         <CustomInputContainer>
           <ButtonUnlockStyled
-            onClick={() => setDoughLock(!doughLock)}
-            src={doughLock ? ButtonLock : ButtonUnlock}
+            onClick={() => setDoughLockView(!doughLockView)}
+            src={doughLockView ? ButtonLock : ButtonUnlock}
             alt="unlock"
           />
           <CustomInput
-            disabled={doughLock}
+            disabled={doughLockView}
             onChange={(e) => setDough(e.target.value)}
             id="customInput"
             type="text"
@@ -125,12 +125,12 @@ const MainHeader = () => {
         <Label htmlFor="customInput">Nadzienie</Label>
         <CustomInputContainer>
           <ButtonUnlockStyled
-            onClick={() => setFillingLock(!fillingLock)}
-            src={fillingLock ? ButtonLock : ButtonUnlock}
+            onClick={() => setFillingLockView(!fillingLockView)}
+            src={fillingLockView ? ButtonLock : ButtonUnlock}
             alt="unlock"
           />
           <CustomInput
-            disabled={fillingLock}
+            disabled={fillingLockView}
             onChange={(e) => setFilling(e.target.value)}
             id="customInput"
             type="text"
@@ -142,12 +142,12 @@ const MainHeader = () => {
         <Label htmlFor="customInput">Składniki</Label>
         <CustomInputContainer>
           <ButtonUnlockStyled
-            onClick={() => setIngredientsLock(!ingredientsLock)}
-            src={ingredientsLock ? ButtonLock : ButtonUnlock}
+            onClick={() => setIngredientsLockView(!ingredientsLockView)}
+            src={ingredientsLockView ? ButtonLock : ButtonUnlock}
             alt="unlock"
           />
           <CustomInput
-            disabled={ingredientsLock}
+            disabled={ingredientsLockView}
             onChange={(e) => setIngredients(e.target.value)}
             id="customInput"
             type="text"
