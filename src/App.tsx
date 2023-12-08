@@ -2,7 +2,7 @@ import "./App.css";
 import DumplingSection from "./components/dumplingSection/DumplingSection";
 
 function App() {
-  return <DumplingSection></DumplingSection>;
+  return <DumplingSection defaultDescription={"pieróg papiróg"} showDescriptionTitle={true}></DumplingSection>;
 }
 
 export default App;

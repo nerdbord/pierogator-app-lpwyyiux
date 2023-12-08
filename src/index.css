@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
 :root {
   --h1-fs: 42px;
   --h1-lh: 34px;
