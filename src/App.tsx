@@ -1,7 +1,13 @@
-import "./App.css";
+import GlobalStyle from "./GlobalStyles";
+import MainHeader from "./components/MainHeader";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <MainHeader />
+      <GlobalStyle />
+    </>
+  );
 }
 
 export default App;
