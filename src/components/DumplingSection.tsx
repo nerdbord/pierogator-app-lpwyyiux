@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import { useStore } from "../store";
 import useDumplingGenerator from "../utils/hooks/useDumplingsGenerator";
-import useRecipesGenerator from "../utils/hooks/useRecipesGenerator";
 import {
-  ButtonGoNext,
   GenerateButton,
   GenerateComponent,
   IngredientsComponent,
@@ -12,18 +10,6 @@ import {
 } from "./MainHeader";
 import DumplingIcon from "./icons/DumplingIcon";
 
-const DumplingSectionWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 343px;
-`;
-
-const DumplingSectionInterface = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
 const StyledImage = styled.img`
   /* height chyba nie konieczny, zobaczy się jak będziemy pracować z większym layoutem */
   /* height: 233px; */
@@ -31,7 +17,7 @@ const StyledImage = styled.img`
   object-fit: cover;
 `;
 
-const CustomInputDumplingName = styled.input`
+export const CustomInputDumplingName = styled.input`
   color: var(--dark-green, #002902);
 
   font-family: "Poppins";
@@ -60,7 +46,7 @@ const CustomInputDumplingName = styled.input`
 // };
 
 export default function DumplingSection() {
-  const { generatedDumplingImage, setDumplingName, ingredientsRecipe } = useStore();
+  const { generatedDumplingImage, setDumplingName, recipe } = useStore();
 
   const handleDumplingNameUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length <= 40) setDumplingName(e.target.value);
@@ -69,9 +55,7 @@ export default function DumplingSection() {
   const handleDescriptionSave = (e: React.MouseEvent<HTMLButtonElement>) => {
     // save
   };
-  const generateRecipe = useRecipesGenerator();
   const generateDumplingImage = useDumplingGenerator();
-  console.log(ingredientsRecipe);
   return (
     <>
       <IngredientsComponent>
@@ -89,9 +73,6 @@ export default function DumplingSection() {
           type="text"
           placeholder="Nazwa pieroga"
         />
-        {/* przerzuć potem do odrębnego komponentu, taki button nie może być tutaj częścią, ale dzięki temu łatwej na razie będzie integrować api*/}
-        <ButtonGoNext onClick={handleDescriptionSave}>Zapisz i przejdź do tworzenia projektu</ButtonGoNext>
-        <ButtonGoNext onClick={generateRecipe}>Ale bez pierogów</ButtonGoNext>
       </GenerateComponent>
     </>
   );

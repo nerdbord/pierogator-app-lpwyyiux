@@ -1,19 +1,10 @@
 import { useStore } from "../../store";
-import generateRecipeIngredients, { Ingredient } from "./useRecipesHelpers/generateRecipeIngredients";
-import generateRecipeInstructions, { Instructions } from "./useRecipesHelpers/generateRecipeInstructions";
-
-interface DumplingRecipe {
-  name: string;
-  imageSrc: string;
-  ingredients: {
-    dough: Ingredient[];
-    filling: Ingredient[];
-  };
-  instructions: Instructions;
-}
+import DumplingRecipe from "../Classes/DumplingRecipe";
+import generateRecipeIngredients from "./useRecipesHelpers/generateRecipeIngredients";
+import generateRecipeInstructions from "./useRecipesHelpers/generateRecipeInstructions";
 
 const useRecipesGenerator = () => {
-  const { dumplingName, dough, filling, ingredients, generatedDumplingImage, setIngredientsRecipe } = useStore();
+  const { dumplingName, dumplingNotes, dough, filling, ingredients, generatedDumplingImage, setRecipe} = useStore();
   const generateDumplingRecipe = async () => {
     // last one === uwagi
     const recipeIngredients = await generateRecipeIngredients({
@@ -29,15 +20,11 @@ const useRecipesGenerator = () => {
       filling,
       notes: "Make it calory efficient, also make it vegan friendly, serve it hot",
     });
-
-    const DumplingRecipe: DumplingRecipe = {
-      name: dumplingName,
-      imageSrc: generatedDumplingImage,
-      ingredients: JSON.parse(`${recipeIngredients}`),
-      instructions: JSON.parse(`${recipeInstructions}`),
-    };
-    console.log(DumplingRecipe);
-    return DumplingRecipe;
+    const DumplingRecipeInstance = new DumplingRecipe(dumplingName, generatedDumplingImage, JSON.parse(`${recipeIngredients}`), JSON.parse(`${recipeInstructions}`),
+    );
+    // console.log(dumplingNotes)
+    setRecipe(DumplingRecipeInstance)
+    return DumplingRecipeInstance;
   };
 
   return generateDumplingRecipe;

@@ -1,6 +1,9 @@
 import create from "zustand";
+import DumplingRecipe, { sampleDumplingRecipe } from "./utils/Classes/DumplingRecipe";
 
 interface StoreState {
+  ctaAction: () => void;
+  setCtaAction: (action: () => void) => void;
   dough: string;
   filling: string;
   fillingLockView: boolean;
@@ -17,11 +20,15 @@ interface StoreState {
   setGeneratedDumplingImage: (image: string) => void;
   dumplingName: string;
   setDumplingName: (name: string) => void;
-  ingredientsRecipe: string;
-  setIngredientsRecipe: (ingredients: string) => void;
+  dumplingNotes: string;
+  setDumplingNotes: (dumplingNotes: string) => void;
+  recipe: DumplingRecipe;
+  setRecipe: (recipe: DumplingRecipe) => void;
 }
 
 export const useStore = create<StoreState>((set) => ({
+  ctaAction: () => {},
+  setCtaAction: (ctaAction: () => void) => set({ ctaAction }),
   dough: "",
   doughLockView: false,
   filling: "",
@@ -38,6 +45,8 @@ export const useStore = create<StoreState>((set) => ({
   setGeneratedDumplingImage: (image: string) => set({ generatedDumplingImage: image }),
   dumplingName: "",
   setDumplingName: (dumplingName: string) => set({ dumplingName }),
-  ingredientsRecipe: "",
-  setIngredientsRecipe: (ingredients: string) => set({ ingredientsRecipe: ingredients }),
+  dumplingNotes: "",
+  setDumplingNotes: (dumplingNotes: string) => set({ dumplingNotes }),
+  recipe: sampleDumplingRecipe,
+  setRecipe: (recipe: DumplingRecipe) => set({ recipe }),
 }));

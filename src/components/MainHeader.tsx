@@ -5,7 +5,7 @@ import Logo from "../assets/Header.png";
 import { useStore } from "../store";
 import DumplingIcon from "./icons/DumplingIcon";
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 375px;
@@ -37,6 +37,7 @@ const Button = styled.button`
   align-items: center;
   gap: 10px;
 `;
+
 export const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -85,17 +86,6 @@ const CustomInput = styled.input`
   background: transparent;
 `;
 
-export const CustomInputDumplingName = styled.input`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  border: 1px solid var(--Gray-light, #e8e8e8);
-  border-radius: 4px;
-  padding: 0.5rem;
-  background: var(--Gray-background, #f9f9f9);
-  margin-top: 4px;
-`;
-
 const ButtonUnlockStyled = styled.img`
   padding: 0;
   border-radius: 0 4px 4px 0;
@@ -112,24 +102,6 @@ const InputContainer = styled.div`
   align-items: flex-start;
   width: 100%;
   margin-top: 20px;
-`;
-
-export const ButtonGoNext = styled.button`
-  border: none;
-  border-radius: 4px;
-  gap: 10px;
-  padding: 1rem;
-  background: var(--dark-green);
-  color: white;
-  width: 100%;
-  height: auto;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 10px;
-
-  &:hover {
-    background-color: var(--green);
-  }
 `;
 
 export const GenerateComponent = styled.div`

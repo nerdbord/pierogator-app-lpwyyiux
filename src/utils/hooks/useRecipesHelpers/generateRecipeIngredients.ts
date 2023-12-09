@@ -40,6 +40,7 @@ export default async function generateRecipeIngredients({
           }
 
           User will provide you dough as a string (user prompt for dough, it could be some basic instructions, dough that user would like to knead), filling as a string (user prompt for filling, it could be filling name with food properties like tasty, dry, etc), ingredients as a string (list of ingredients from which filling, and dough will be made, treat them as basic must have ingredients, take into account that notes are superior to ingredients).
+          Take notice that all of generated data should be in polish language.
           Whilst creating ingredients take into accout user provided ingredients and add some of yours if needed (but take into account user notes, example: if they're allergic to sth don't add such ingredients, or if they're vegan remove any animal products).
           Ingredients name should contain ingredient name (user will provide you ingredients, some of these you should deduce from fillings and dough recipes, whilst taking into consideration user notes), their quantity is based on real life quantities when thinking of such ingredient, e.g. ml, cup, grams.
           You should return only JSON of code of ingredients object.

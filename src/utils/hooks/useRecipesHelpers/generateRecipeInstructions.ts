@@ -45,6 +45,7 @@ export default async function generateRecipeInstructions({
           }
 
           User will provide you dough as a string (user prompt for dough, it could be some basic instructions, dough that user would like to knead), filling as a string (user prompt for filling, it could be filling name with food properties like tasty, dry, etc), ingredients based on ingredients interface (list of ingredients from which filling, and dough will be made, every ingredient should me mentioned in the instructions), and notes as a string (they may contain information how user would like the food to be made, for example in microwave, or quickly).
+          Take notice that all of generated data should be in polish language.
           Whilst creating dough_preaparation take into account only data in ingredients.dough, dough (to know what user wishes to knead), and notes (for suggestions, maybe how they wish to do this).
           Whilst creating filling_preparation take into account only data in ingredients.filling, filling and notes (for suggestions, maybe they'll have information how user wishes to do this).
           Whilst creating forming_and_cooking_dumplings take into account user notes, dough, filling.
