@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useStore } from "../store";
 import useDumplingGenerator from "../utils/useDumplingsGenerator";
+
 import {
   ButtonGoNext,
   GenerateButton,
@@ -10,25 +11,6 @@ import {
   TitleWrapper,
 } from "./MainHeader";
 import DumplingIcon from "./icons/DumplingIcon";
-
-const DumplingSectionWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 343px;
-`;
-
-const DumplingSectionInterface = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const StyledImage = styled.img`
-  /* height chyba nie konieczny, zobaczy się jak będziemy pracować z większym layoutem */
-  /* height: 233px; */
-  border-radius: 4px;
-  object-fit: cover;
-`;
 
 const CustomInputDumplingName = styled.input`
   color: var(--dark-green, #002902);
@@ -81,7 +63,9 @@ export default function DumplingSection() {
         <GenerateButton onClick={generateDumplingImage}>Generuj</GenerateButton>
       </IngredientsComponent>
       <GenerateComponent>
-        {generatedDumplingImage && <img src={generatedDumplingImage} alt="Wygenerowany Pieróg" />}
+        {generatedDumplingImage && (
+          <img src={generatedDumplingImage} alt="Wygenerowany Pieróg" />
+        )}
         <CustomInputDumplingName
           onChange={handleDumplingNameUpdate}
           id="customInput"
@@ -89,7 +73,9 @@ export default function DumplingSection() {
           placeholder="Nazwa pieroga"
         />
         {/* przerzuć potem do odrębnego komponentu, taki button nie może być tutaj częścią, ale dzięki temu łatwej na razie będzie integrować api*/}
-        <ButtonGoNext onClick={handleDescriptionSave}>Zapisz i przejdź do tworzenia projektu</ButtonGoNext>
+        <ButtonGoNext onClick={handleDescriptionSave}>
+          Zapisz i przejdź do tworzenia projektu
+        </ButtonGoNext>
       </GenerateComponent>
     </>
   );

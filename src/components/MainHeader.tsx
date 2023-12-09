@@ -5,6 +5,7 @@ import ButtonUnlock from "../assets/ButtonUnlock.png";
 import Logo from "../assets/Header.png";
 import { useStore } from "../store";
 import DumplingIcon from "./icons/DumplingIcon";
+import useAiGeneratedDumpling from "../utils/useAiGeneratedDumpling";
 
 const Container = styled.div`
   display: flex;
@@ -26,18 +27,6 @@ export const IngredientsComponent = styled.div`
   margin-bottom: 5px;
 `;
 
-const IngredientsLogo = styled.img`
-  display: flex;
-`;
-
-const Button = styled.button`
-  background: white;
-  border: 1px solid #d6d6d6;
-  border-radius: 5px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-`;
 export const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -139,6 +128,8 @@ export const GenerateComponent = styled.div`
 `;
 
 const MainHeader = () => {
+  const generateGptResponse = useAiGeneratedDumpling();
+
   //
   const {
     dough,
@@ -155,7 +146,10 @@ const MainHeader = () => {
     filling,
   } = useStore();
 
-  useEffect(() => console.log(dough, ingredients, filling), [dough, ingredients, filling]);
+  useEffect(
+    () => console.log(dough, ingredients, filling),
+    [dough, ingredients, filling]
+  );
   return (
     <Container>
       <Header src={Logo} alt="logo" />
@@ -166,7 +160,7 @@ const MainHeader = () => {
           <DumplingIcon />
           <Title>Składniki</Title>
         </TitleWrapper>
-        <GenerateButton>Generuj</GenerateButton>
+        <GenerateButton onClick={generateGptResponse}>Generuj</GenerateButton>
       </IngredientsComponent>
       <InputContainer>
         <Label htmlFor="customInput">Ciasto</Label>
