@@ -1,11 +1,10 @@
-import styled from "styled-components";
-import Logo from "../assets/Header.png";
-import Ingredients from "../assets/ingredients.png";
-import Dumplings from "../assets/Dumplings.png";
-import ButtonUnlock from "../assets/ButtonUnlock.png";
-import ButtonLock from "../assets/ButtonLock.png";
 import { useEffect } from "react";
+import styled from "styled-components";
+import ButtonLock from "../assets/ButtonLock.png";
+import ButtonUnlock from "../assets/ButtonUnlock.png";
+import Logo from "../assets/Header.png";
 import { useStore } from "../store";
+import DumplingIcon from "./icons/DumplingIcon";
 import useDumplingGenerator from "./useDumplingsGenerator";
 
 const Container = styled.div`
@@ -39,6 +38,33 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   gap: 10px;
+`;
+const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+`;
+
+const Title = styled.h2`
+  color: var(--dark-green);
+`;
+
+const GenerateButton = styled.button`
+  display: inline-flex;
+  padding: 10px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--gray, #d6d6d6);
+  background: var(--white, #fff);
+
+  &:hover {
+    border: 1px solid var(--Gray, #d6d6d6);
+    background: var(--Gray-light, #e8e8e8);
+  }
 `;
 
 const CustomInputContainer = styled.div`
@@ -131,16 +157,18 @@ const MainHeader = () => {
     setName,
   } = useStore();
 
-  useEffect(
-    () => console.log(dough, ingredients, filling),
-    [dough, ingredients, filling]
-  );
+  useEffect(() => console.log(dough, ingredients, filling), [dough, ingredients, filling]);
   return (
     <Container>
       <Header src={Logo} alt="logo" />
       <IngredientsComponent>
-        <IngredientsLogo src={Ingredients} alt="ingredients" />
-        <Button>Generuj</Button>
+        {/* <IngredientsLogo src={Ingredients} alt="ingredients" />
+         */}
+        <TitleWrapper>
+          <DumplingIcon />
+          <Title>Składniki</Title>
+        </TitleWrapper>
+        <GenerateButton>Generuj</GenerateButton>
       </IngredientsComponent>
       <InputContainer>
         <Label htmlFor="customInput">Ciasto</Label>
@@ -194,13 +222,15 @@ const MainHeader = () => {
         </CustomInputContainer>
       </InputContainer>
       <IngredientsComponent>
-        <IngredientsLogo src={Dumplings} alt="ingredients" />
-        <Button onClick={generateDumplingImage}>Generuj</Button>
+        {/* <IngredientsLogo src={Dumplings} alt="ingredients" /> */}
+        <TitleWrapper>
+          <DumplingIcon />
+          <Title>Pieróg</Title>
+        </TitleWrapper>
+        <GenerateButton onClick={generateDumplingImage}>Generuj</GenerateButton>
       </IngredientsComponent>
       <GenerateComponent>
-        {generatedDumplingImage && (
-          <img src={generatedDumplingImage} alt="Wygenerowany Pieróg" />
-        )}
+        {generatedDumplingImage && <img src={generatedDumplingImage} alt="Wygenerowany Pieróg" />}
         <CustomInputDumplingName
           onChange={(e) => setName(e.target.value)}
           id="customInput"
