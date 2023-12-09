@@ -6,6 +6,7 @@ import ButtonUnlock from "../assets/ButtonUnlock.png";
 import ButtonLock from "../assets/ButtonLock.png";
 import { useEffect } from "react";
 import { useStore } from "../store";
+import useDumplingGenerator from "./useDumplingsGenerator";
 
 const Container = styled.div`
   display: flex;
@@ -24,6 +25,7 @@ const IngredientsComponent = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  margin-bottom: 5px;
 `;
 
 const IngredientsLogo = styled.img`
@@ -59,6 +61,17 @@ const CustomInput = styled.input`
   background: transparent;
 `;
 
+const CustomInputDumplingName = styled.input`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  border: 1px solid var(--Gray-light, #e8e8e8);
+  border-radius: 4px;
+  padding: 0.5rem;
+  background: var(--Gray-background, #f9f9f9);
+  margin-top: 4px;
+`;
+
 const ButtonUnlockStyled = styled.img`
   padding: 0;
   border-radius: 0 4px 4px 0;
@@ -77,7 +90,30 @@ const InputContainer = styled.div`
   margin-top: 20px;
 `;
 
+const ButtonGoNext = styled.button`
+  border: none;
+  border-radius: 4px;
+  gap: 10px;
+  padding: 1rem;
+  background: #002902;
+  color: white;
+  width: 100%;
+  height: auto;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 10px;
+`;
+
+const GenerateComponent = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const MainHeader = () => {
+  //
+  const generateDumplingImage = useDumplingGenerator();
+
+  //
   const {
     dough,
     setDough,
@@ -91,6 +127,8 @@ const MainHeader = () => {
     setIngredientsLockView,
     ingredientsLockView,
     filling,
+    generatedDumplingImage,
+    setName,
   } = useStore();
 
   useEffect(
@@ -157,8 +195,20 @@ const MainHeader = () => {
       </InputContainer>
       <IngredientsComponent>
         <IngredientsLogo src={Dumplings} alt="ingredients" />
-        <Button>Generuj</Button>
+        <Button onClick={generateDumplingImage}>Generuj</Button>
       </IngredientsComponent>
+      <GenerateComponent>
+        {generatedDumplingImage && (
+          <img src={generatedDumplingImage} alt="Wygenerowany Pieróg" />
+        )}
+        <CustomInputDumplingName
+          onChange={(e) => setName(e.target.value)}
+          id="customInput"
+          type="text"
+          placeholder="Nazwa pieroga"
+        />
+        <ButtonGoNext>Zapisz i przejdź do tworzenia projektu</ButtonGoNext>
+      </GenerateComponent>
     </Container>
   );
 };
