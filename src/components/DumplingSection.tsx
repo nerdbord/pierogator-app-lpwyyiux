@@ -66,7 +66,9 @@ export default function DumplingSection() {
         <GenerateButton onClick={generateDumplingImage}>Generuj</GenerateButton>
       </IngredientsComponent>
       <GenerateComponent>
-        {generatedDumplingImage && <img src={generatedDumplingImage} alt="Wygenerowany Pieróg" />}
+        {generatedDumplingImage && (
+          <img src={generatedDumplingImage} alt="Wygenerowany Pieróg" />
+        )}
         <CustomInputDumplingName
           onChange={handleDumplingNameUpdate}
           id="customInput"
