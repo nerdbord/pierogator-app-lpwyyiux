@@ -23,8 +23,7 @@ const useDumplingGenerator = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization:
-              "db033f4b6969de3ef2e9948f261e91c305126be6d16bcc71e6feff30ca40943f",
+            Authorization: `${import.meta.env.VITE_REACT_APP_API_KEY}`,
           },
         }
       );

@@ -18,13 +18,18 @@
   --white: #ffffff;
   --green: #004b03;
 }
+h1,
+h2,
+h3 {
+  margin: 0;
+}
 
 h1 {
   font-family: "Barrio";
   font-weight: 400;
   font-size: var(--h1-fs);
   line-height: var(--h1-lh);
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 h2 {
@@ -32,7 +37,7 @@ h2 {
   font-weight: 400;
   font-size: var(--h2-fs);
   line-height: var(--h2-lh);
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 h3 {
@@ -40,7 +45,7 @@ h3 {
   font-weight: 500;
   font-size: var(--h3-fs);
   line-height: var(--h3-lh);
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 body {
@@ -48,7 +53,7 @@ body {
   font-weight: 400;
   font-size: var(--default-fs);
   line-height: var(--default-lh);
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 button {
@@ -56,5 +61,5 @@ button {
   font-weight: 500;
   font-size: var(--default-fs);
   line-height: var(--button-lh);
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }

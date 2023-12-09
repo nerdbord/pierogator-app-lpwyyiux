@@ -1,12 +1,10 @@
-import styled from "styled-components";
-import Logo from "../assets/Header.png";
-import Ingredients from "../assets/ingredients.png";
-import Dumplings from "../assets/Dumplings.png";
-import ButtonUnlock from "../assets/ButtonUnlock.png";
-import ButtonLock from "../assets/ButtonLock.png";
 import { useEffect } from "react";
+import styled from "styled-components";
+import ButtonLock from "../assets/ButtonLock.png";
+import ButtonUnlock from "../assets/ButtonUnlock.png";
+import Logo from "../assets/Header.png";
 import { useStore } from "../store";
-import useDumplingGenerator from "./useDumplingsGenerator";
+import DumplingIcon from "./icons/DumplingIcon";
 
 const Container = styled.div`
   display: flex;
@@ -21,7 +19,7 @@ const Header = styled.img`
   height: auto;
 `;
 
-const IngredientsComponent = styled.div`
+export const IngredientsComponent = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
@@ -39,6 +37,33 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   gap: 10px;
+`;
+export const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const Title = styled.h2`
+  color: var(--dark-green);
+`;
+
+export const GenerateButton = styled.button`
+  display: inline-flex;
+  padding: 10px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--gray, #d6d6d6);
+  background: var(--white, #fff);
+
+  &:hover {
+    border: 1px solid var(--Gray, #d6d6d6);
+    background: var(--Gray-light, #e8e8e8);
+  }
 `;
 
 const CustomInputContainer = styled.div`
@@ -61,7 +86,7 @@ const CustomInput = styled.input`
   background: transparent;
 `;
 
-const CustomInputDumplingName = styled.input`
+export const CustomInputDumplingName = styled.input`
   display: flex;
   width: 100%;
   align-items: center;
@@ -90,29 +115,30 @@ const InputContainer = styled.div`
   margin-top: 20px;
 `;
 
-const ButtonGoNext = styled.button`
+export const ButtonGoNext = styled.button`
   border: none;
   border-radius: 4px;
   gap: 10px;
   padding: 1rem;
-  background: #002902;
+  background: var(--dark-green);
   color: white;
   width: 100%;
   height: auto;
   font-size: 14px;
   font-weight: 600;
   margin-top: 10px;
+
+  &:hover {
+    background-color: var(--green);
+  }
 `;
 
-const GenerateComponent = styled.div`
+export const GenerateComponent = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
 const MainHeader = () => {
-  //
-  const generateDumplingImage = useDumplingGenerator();
-
   //
   const {
     dough,
@@ -127,20 +153,20 @@ const MainHeader = () => {
     setIngredientsLockView,
     ingredientsLockView,
     filling,
-    generatedDumplingImage,
-    setName,
   } = useStore();
 
-  useEffect(
-    () => console.log(dough, ingredients, filling),
-    [dough, ingredients, filling]
-  );
+  useEffect(() => console.log(dough, ingredients, filling), [dough, ingredients, filling]);
   return (
     <Container>
       <Header src={Logo} alt="logo" />
       <IngredientsComponent>
-        <IngredientsLogo src={Ingredients} alt="ingredients" />
-        <Button>Generuj</Button>
+        {/* <IngredientsLogo src={Ingredients} alt="ingredients" />
+         */}
+        <TitleWrapper>
+          <DumplingIcon />
+          <Title>Składniki</Title>
+        </TitleWrapper>
+        <GenerateButton>Generuj</GenerateButton>
       </IngredientsComponent>
       <InputContainer>
         <Label htmlFor="customInput">Ciasto</Label>
@@ -193,22 +219,6 @@ const MainHeader = () => {
           />
         </CustomInputContainer>
       </InputContainer>
-      <IngredientsComponent>
-        <IngredientsLogo src={Dumplings} alt="ingredients" />
-        <Button onClick={generateDumplingImage}>Generuj</Button>
-      </IngredientsComponent>
-      <GenerateComponent>
-        {generatedDumplingImage && (
-          <img src={generatedDumplingImage} alt="Wygenerowany Pieróg" />
-        )}
-        <CustomInputDumplingName
-          onChange={(e) => setName(e.target.value)}
-          id="customInput"
-          type="text"
-          placeholder="Nazwa pieroga"
-        />
-        <ButtonGoNext>Zapisz i przejdź do tworzenia projektu</ButtonGoNext>
-      </GenerateComponent>
     </Container>
   );
 };
