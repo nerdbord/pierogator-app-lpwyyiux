@@ -2,7 +2,15 @@ import axios from "axios";
 import { useStore } from "../store";
 
 const useAiGeneratedDumpling = () => {
-  const { setDough, setFilling, setIngredients, setIsLoading } = useStore();
+  const {
+    setDough,
+    setFilling,
+    setIngredients,
+    setIsLoading,
+    doughLockView,
+    fillingLockView,
+    ingredientsLockView,
+  } = useStore();
 
   const generateGptResponse = async () => {
     setIsLoading(true); // Rozpoczęcie ładowania
@@ -41,11 +49,9 @@ const useAiGeneratedDumpling = () => {
 
       const match = firstSetRegex.exec(chatResponse);
 
-      if (match) {
-        setDough(match[1].trim());
-        setFilling(match[2].trim());
-        setIngredients(match[3].trim());
-      }
+      if (match && !doughLockView) setDough(match[1].trim());
+      if (match && !fillingLockView) setFilling(match[2].trim());
+      if (match && !ingredientsLockView) setIngredients(match[3].trim());
     } catch (error) {
       console.error("Błąd podczas generowania odpowiedzi GPT:", error);
     } finally {
