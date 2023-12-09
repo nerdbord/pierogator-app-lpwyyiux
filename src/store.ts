@@ -13,6 +13,10 @@ interface StoreState {
   setFilling: (filling: string) => void;
   setDoughLockView: (doughLockView: boolean) => void;
   setDough: (dough: string) => void;
+  generatedDumplingImage: string;
+  setGeneratedDumplingImage: (image: string) => void;
+  name: string;
+  setName: (name: string) => void;
 }
 
 export const useStore = create<StoreState>((set) => ({
@@ -29,4 +33,9 @@ export const useStore = create<StoreState>((set) => ({
   setFilling: (filling: string) => set({ filling }),
   setDoughLockView: (doughLockView: boolean) => set({ doughLockView }),
   setDough: (dough: string) => set({ dough }),
+  generatedDumplingImage: "",
+  setGeneratedDumplingImage: (image: string) =>
+    set({ generatedDumplingImage: image }),
+  name: "",
+  setName: (name: string) => set({ name }),
 }));
