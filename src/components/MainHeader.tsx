@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 import ButtonLock from "../assets/ButtonLock.png";
 import ButtonUnlock from "../assets/ButtonUnlock.png";
@@ -155,7 +154,7 @@ const MainHeader = () => {
     filling,
   } = useStore();
 
-  useEffect(() => console.log(dough, ingredients, filling), [dough, ingredients, filling]);
+  // useEffect(() => console.log(dough, ingredients, filling), [dough, ingredients, filling]);
   return (
     <Container>
       <Header src={Logo} alt="logo" />

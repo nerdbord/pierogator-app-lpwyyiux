@@ -17,6 +17,8 @@ interface StoreState {
   setGeneratedDumplingImage: (image: string) => void;
   dumplingName: string;
   setDumplingName: (name: string) => void;
+  ingredientsRecipe: string;
+  setIngredientsRecipe: (ingredients: string) => void;
 }
 
 export const useStore = create<StoreState>((set) => ({
@@ -36,4 +38,6 @@ export const useStore = create<StoreState>((set) => ({
   setGeneratedDumplingImage: (image: string) => set({ generatedDumplingImage: image }),
   dumplingName: "",
   setDumplingName: (dumplingName: string) => set({ dumplingName }),
+  ingredientsRecipe: "",
+  setIngredientsRecipe: (ingredients: string) => set({ ingredientsRecipe: ingredients }),
 }));

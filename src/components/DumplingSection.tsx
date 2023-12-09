@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useStore } from "../store";
-import useDumplingGenerator from "../utils/useDumplingsGenerator";
+import useDumplingGenerator from "../utils/hooks/useDumplingsGenerator";
+import useRecipesGenerator from "../utils/hooks/useRecipesGenerator";
 import {
   ButtonGoNext,
   GenerateButton,
@@ -59,7 +60,7 @@ const CustomInputDumplingName = styled.input`
 // };
 
 export default function DumplingSection() {
-  const { generatedDumplingImage, setDumplingName } = useStore();
+  const { generatedDumplingImage, setDumplingName, ingredientsRecipe } = useStore();
 
   const handleDumplingNameUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length <= 40) setDumplingName(e.target.value);
@@ -68,9 +69,9 @@ export default function DumplingSection() {
   const handleDescriptionSave = (e: React.MouseEvent<HTMLButtonElement>) => {
     // save
   };
-
+  const generateRecipe = useRecipesGenerator();
   const generateDumplingImage = useDumplingGenerator();
-
+  console.log(ingredientsRecipe);
   return (
     <>
       <IngredientsComponent>
@@ -90,6 +91,7 @@ export default function DumplingSection() {
         />
         {/* przerzuć potem do odrębnego komponentu, taki button nie może być tutaj częścią, ale dzięki temu łatwej na razie będzie integrować api*/}
         <ButtonGoNext onClick={handleDescriptionSave}>Zapisz i przejdź do tworzenia projektu</ButtonGoNext>
+        <ButtonGoNext onClick={generateRecipe}>Ale bez pierogów</ButtonGoNext>
       </GenerateComponent>
     </>
   );
