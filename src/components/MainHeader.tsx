@@ -5,7 +5,6 @@ import ButtonUnlock from "../assets/ButtonUnlock.png";
 import Logo from "../assets/Header.png";
 import { useStore } from "../store";
 import DumplingIcon from "./icons/DumplingIcon";
-import useDumplingGenerator from "./useDumplingsGenerator";
 
 const Container = styled.div`
   display: flex;
@@ -20,7 +19,7 @@ const Header = styled.img`
   height: auto;
 `;
 
-const IngredientsComponent = styled.div`
+export const IngredientsComponent = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
@@ -39,7 +38,7 @@ const Button = styled.button`
   align-items: center;
   gap: 10px;
 `;
-const TitleWrapper = styled.div`
+export const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: fit-content;
@@ -47,11 +46,11 @@ const TitleWrapper = styled.div`
   gap: 8px;
 `;
 
-const Title = styled.h2`
+export const Title = styled.h2`
   color: var(--dark-green);
 `;
 
-const GenerateButton = styled.button`
+export const GenerateButton = styled.button`
   display: inline-flex;
   padding: 10px 12px;
   justify-content: center;
@@ -87,7 +86,7 @@ const CustomInput = styled.input`
   background: transparent;
 `;
 
-const CustomInputDumplingName = styled.input`
+export const CustomInputDumplingName = styled.input`
   display: flex;
   width: 100%;
   align-items: center;
@@ -116,29 +115,30 @@ const InputContainer = styled.div`
   margin-top: 20px;
 `;
 
-const ButtonGoNext = styled.button`
+export const ButtonGoNext = styled.button`
   border: none;
   border-radius: 4px;
   gap: 10px;
   padding: 1rem;
-  background: #002902;
+  background: var(--dark-green);
   color: white;
   width: 100%;
   height: auto;
   font-size: 14px;
   font-weight: 600;
   margin-top: 10px;
+
+  &:hover {
+    background-color: var(--green);
+  }
 `;
 
-const GenerateComponent = styled.div`
+export const GenerateComponent = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
 const MainHeader = () => {
-  //
-  const generateDumplingImage = useDumplingGenerator();
-
   //
   const {
     dough,
@@ -153,8 +153,6 @@ const MainHeader = () => {
     setIngredientsLockView,
     ingredientsLockView,
     filling,
-    generatedDumplingImage,
-    setName,
   } = useStore();
 
   useEffect(() => console.log(dough, ingredients, filling), [dough, ingredients, filling]);
@@ -221,24 +219,6 @@ const MainHeader = () => {
           />
         </CustomInputContainer>
       </InputContainer>
-      <IngredientsComponent>
-        {/* <IngredientsLogo src={Dumplings} alt="ingredients" /> */}
-        <TitleWrapper>
-          <DumplingIcon />
-          <Title>Pieróg</Title>
-        </TitleWrapper>
-        <GenerateButton onClick={generateDumplingImage}>Generuj</GenerateButton>
-      </IngredientsComponent>
-      <GenerateComponent>
-        {generatedDumplingImage && <img src={generatedDumplingImage} alt="Wygenerowany Pieróg" />}
-        <CustomInputDumplingName
-          onChange={(e) => setName(e.target.value)}
-          id="customInput"
-          type="text"
-          placeholder="Nazwa pieroga"
-        />
-        <ButtonGoNext>Zapisz i przejdź do tworzenia projektu</ButtonGoNext>
-      </GenerateComponent>
     </Container>
   );
 };
