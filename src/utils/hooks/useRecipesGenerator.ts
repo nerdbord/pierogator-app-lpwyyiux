@@ -11,18 +11,17 @@ const useRecipesGenerator = () => {
       dough,
       filling,
       ingredients,
-      notes: "Make it calory efficient, also make it vegan friendly",
+      notes: dumplingNotes,
     });
 
     const recipeInstructions = await generateRecipeInstructions({
       recipeIngredients,
       dough,
       filling,
-      notes: "Make it calory efficient, also make it vegan friendly, serve it hot",
+      notes: dumplingNotes,
     });
     const DumplingRecipeInstance = new DumplingRecipe(dumplingName, generatedDumplingImage, JSON.parse(`${recipeIngredients}`), JSON.parse(`${recipeInstructions}`),
     );
-    // console.log(dumplingNotes)
     setRecipe(DumplingRecipeInstance)
     return DumplingRecipeInstance;
   };

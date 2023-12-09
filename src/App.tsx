@@ -1,12 +1,8 @@
-import { useEffect } from "react";
-import GlobalStyle from "./GlobalStyles";
-import { CtaButton } from "./components/CtaButton";
-import DumplingSection from "./components/DumplingSection";
-import MainHeader from "./components/MainHeader";
-import RecipeSection from "./components/RecipeSection";
-import { useStore } from "./store";
+import { Route, HashRouter as Router, Routes } from "react-router-dom";
 import styled from "styled-components";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import GlobalStyle from "./GlobalStyles";
+import ConfigDumplingPage from "./pages/ConfigDumplingPage";
+import DumplingRecipePage from "./pages/DumplingRecipePage";
 
 export const Container = styled.div`
   display: flex;
@@ -17,40 +13,12 @@ export const Container = styled.div`
 `;
 
 function App() {
-  const { ctaAction, setCtaAction, setRecipe } = useStore();
-
-  // rozróżnij to potem na podstawie url może, pozbędziesz się tez ctaAction być może. Wsm strona będzie miała inne dane więc.
-  const handleDumplingCreation = async () => {
-    // tutaj wsadzasz funkcję od save'owania składników i zdjęcia
-    // saveDataInMemory()
-    setCtaAction(handleDumplingSave);
-    // await generateRecipe();
-    // tutaj wsadzasz potem funkcję z kolejnego taska
-    // await saveRecipeOnDb();
-  };
-  const handleDumplingSave = async () => {};
-
-  useEffect(() => setCtaAction(handleDumplingCreation), []);
-
   return (
     <Router>
       <GlobalStyle />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Container>
-                <MainHeader />
-                <DumplingSection />
-              </Container>
-              <CtaButton onClick={ctaAction}>
-                Zapisz i przejdź do tworzenia przepisu
-              </CtaButton>
-            </>
-          }
-        />
-        <Route path="/recepies" element={<RecipeSection />} />
+        <Route path="/" element={<ConfigDumplingPage />} />
+        <Route path="/recipes" element={<DumplingRecipePage configPath="/" proceedPath="/gallery" />} />
       </Routes>
     </Router>
   );

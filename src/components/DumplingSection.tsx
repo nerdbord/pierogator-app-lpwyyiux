@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useStore } from "../store";
-import useDumplingGenerator from "../utils/hooks/useDumplingsGenerator";
 import {
   GenerateButton,
   GenerateComponent,
@@ -40,22 +39,27 @@ export const CustomInputDumplingName = styled.input`
   }
 `;
 
-// export type DumplingSectionProps = {
-//   defaultDescription: string;
-//   showDescriptionTitle: boolean;
-// };
+const DescriptionTitle = styled.h3`
+  color: var(--dark-green);
+`;
 
-export default function DumplingSection() {
-  const { generatedDumplingImage, setDumplingName, recipe } = useStore();
+export type DumplingSectionProps = {
+  buttonAction: ()=>void;
+  buttonText?: string;
+  descriptionTitle?: string;
+};
+
+export default function DumplingSection(props: DumplingSectionProps ) {
+  const { generatedDumplingImage, setDumplingName, dumplingName } = useStore();
 
   const handleDumplingNameUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length <= 40) setDumplingName(e.target.value);
   };
 
   const handleDescriptionSave = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // save
+    // save in memory
   };
-  const generateDumplingImage = useDumplingGenerator();
+
   return (
     <>
       <IngredientsComponent>
@@ -63,13 +67,15 @@ export default function DumplingSection() {
           <DumplingIcon />
           <Title>Pieróg</Title>
         </TitleWrapper>
-        <GenerateButton onClick={generateDumplingImage}>Generuj</GenerateButton>
+        <GenerateButton onClick={props.buttonAction}>{props.buttonText || "Generuj"}</GenerateButton>
       </IngredientsComponent>
       <GenerateComponent>
         {generatedDumplingImage && (
           <img src={generatedDumplingImage} alt="Wygenerowany Pieróg" />
         )}
+        {props.descriptionTitle && <DescriptionTitle>{props.descriptionTitle}</DescriptionTitle>}
         <CustomInputDumplingName
+          value={dumplingName}
           onChange={handleDumplingNameUpdate}
           id="customInput"
           type="text"
