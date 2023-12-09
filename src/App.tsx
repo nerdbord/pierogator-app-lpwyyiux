@@ -5,6 +5,16 @@ import DumplingSection from "./components/DumplingSection";
 import MainHeader from "./components/MainHeader";
 import RecipeSection from "./components/RecipeSection";
 import { useStore } from "./store";
+import styled from "styled-components";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 375px;
+  height: auto;
+  padding: 0.5rem;
+`;
 
 function App() {
   const { ctaAction, setCtaAction, setRecipe } = useStore();
@@ -19,15 +29,30 @@ function App() {
     // await saveRecipeOnDb();
   };
   const handleDumplingSave = async () => {};
+
   useEffect(() => setCtaAction(handleDumplingCreation), []);
+
   return (
-    <>
-      <MainHeader />
-      <DumplingSection />
-      <RecipeSection></RecipeSection>
+    <Router>
       <GlobalStyle />
-      <CtaButton onClick={ctaAction}>Zapisz i przejdź do tworzenia przepisu</CtaButton>
-    </>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Container>
+                <MainHeader />
+                <DumplingSection />
+              </Container>
+              <CtaButton onClick={ctaAction}>
+                Zapisz i przejdź do tworzenia przepisu
+              </CtaButton>
+            </>
+          }
+        />
+        <Route path="/recepies" element={<RecipeSection />} />
+      </Routes>
+    </Router>
   );
 }
 
