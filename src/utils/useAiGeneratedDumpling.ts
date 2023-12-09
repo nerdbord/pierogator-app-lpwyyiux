@@ -13,7 +13,7 @@ const useAiGeneratedDumpling = () => {
   } = useStore();
 
   const generateGptResponse = async () => {
-    setIsLoading(true); // Rozpoczęcie ładowania
+    setIsLoading(true);
 
     const data = {
       model: "gpt-3.5-turbo",
@@ -55,7 +55,7 @@ const useAiGeneratedDumpling = () => {
     } catch (error) {
       console.error("Błąd podczas generowania odpowiedzi GPT:", error);
     } finally {
-      setIsLoading(false); // Zakończenie ładowania
+      setIsLoading(false);
     }
   };
 
