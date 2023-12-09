@@ -144,6 +144,7 @@ const MainHeader = () => {
     setIngredientsLockView,
     ingredientsLockView,
     filling,
+    isLoading,
   } = useStore();
 
   useEffect(
@@ -160,6 +161,8 @@ const MainHeader = () => {
           <DumplingIcon />
           <Title>Składniki</Title>
         </TitleWrapper>
+        {isLoading && <p>Loading...</p>}
+
         <GenerateButton onClick={generateGptResponse}>Generuj</GenerateButton>
       </IngredientsComponent>
       <InputContainer>
@@ -171,6 +174,7 @@ const MainHeader = () => {
             alt="unlock"
           />
           <CustomInput
+            value={dough}
             disabled={doughLockView}
             onChange={(e) => setDough(e.target.value)}
             id="customInput"
@@ -188,6 +192,7 @@ const MainHeader = () => {
             alt="unlock"
           />
           <CustomInput
+            value={filling}
             disabled={fillingLockView}
             onChange={(e) => setFilling(e.target.value)}
             id="customInput"
@@ -205,6 +210,7 @@ const MainHeader = () => {
             alt="unlock"
           />
           <CustomInput
+            value={ingredients}
             disabled={ingredientsLockView}
             onChange={(e) => setIngredients(e.target.value)}
             id="customInput"

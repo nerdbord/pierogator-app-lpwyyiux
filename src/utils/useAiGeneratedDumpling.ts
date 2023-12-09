@@ -1,21 +1,23 @@
 import axios from "axios";
-//import { useStore } from "../store";
+import { useStore } from "../store";
 
 const useAiGeneratedDumpling = () => {
-  //const { dough, filling, ingredients } = useStore();
+  const { setDough, setFilling, setIngredients, setIsLoading } = useStore();
 
   const generateGptResponse = async () => {
+    setIsLoading(true); // Rozpoczęcie ładowania
+
     const data = {
       model: "gpt-3.5-turbo",
       messages: [
         {
           role: "system",
-          content:
-            "Create a object with 3 properties: dough, filling, ingredients and set them to string values of random dumpling properties.",
+          content: "You are a helpful assistant.",
         },
         {
           role: "user",
-          content: "Hello!",
+          content:
+            "Potrzebuję pomysłów na rodzaje ciasta i nadzienia do pierogów. Proszę podaj różne opcje ciasta oraz propozycje nadzienia np ciasto jasne / ciemne itp, nadzieni to np wegańskie, mięsne, serowe a składniki np kapusta, truskawki, cebula, ser itp. Nie podawaj przepisu jak to przygotować tylko podaj takie kompozycje, np ciasto: jasne , nadzienie: wegańskie, składniki: cebula,ser,pieprz.",
         },
       ],
     };
@@ -32,10 +34,22 @@ const useAiGeneratedDumpling = () => {
         }
       );
 
-      console.log(response.data);
+      const chatResponse = response.data.choices[0].message.content;
+
+      const firstSetRegex =
+        /1\.\sCiasto:\s(.*?)\s+Nadzienie:\s(.*?)\s+Składniki:\s(.*?)(?=\n|$)/;
+
+      const match = firstSetRegex.exec(chatResponse);
+
+      if (match) {
+        setDough(match[1].trim());
+        setFilling(match[2].trim());
+        setIngredients(match[3].trim());
+      }
     } catch (error) {
       console.error("Błąd podczas generowania odpowiedzi GPT:", error);
-      return null;
+    } finally {
+      setIsLoading(false); // Zakończenie ładowania
     }
   };
 
