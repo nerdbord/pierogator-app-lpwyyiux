@@ -24,6 +24,8 @@ export default function RecipeSection() {
           placeholder="Przykład: chrupiące pierogi bez pieczenia, bez użycia miksera, przyjazne weganom"
           id="recipeInput"
           disabled={false}
+          padding={"16px"}
+          border={`border: 1px solid var(--gray-light, #e8e8e8)`}
         ></TextArea>
       </GenerateComponent>
 

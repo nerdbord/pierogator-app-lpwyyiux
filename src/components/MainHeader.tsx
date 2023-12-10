@@ -59,12 +59,13 @@ export const GenerateButton = styled.button`
 const CustomInputContainer = styled.div`
   display: flex;
   width: 100%;
-  align-items: center;
+  align-items: flex-start;
   border: 1px solid var(--Gray-light, #e8e8e8);
   border-radius: 4px;
-  padding: 0.5rem;
+  padding: 16px;
   background: var(--Gray-background, #f9f9f9);
-  margin-top: 4px;
+  margin-top: 7px;
+  gap: 12px;
 `;
 
 // const CustomInput = styled.textarea`
@@ -159,8 +160,10 @@ const MainHeader = () => {
             value={dough}
             disabled={doughLockView}
             setValue={setDough}
-            id="customInput"
+            id="customInput1"
             placeholder="Wpisz, wygeneruj lub pozostaw puste."
+            padding="0px"
+            border="none"
           />
         </CustomInputContainer>
       </InputContainer>
@@ -176,8 +179,10 @@ const MainHeader = () => {
             value={filling}
             disabled={fillingLockView}
             setValue={setFilling}
-            id="customInput"
+            id="customInput2"
             placeholder="Wpisz, wygeneruj lub pozostaw puste."
+            padding="0px"
+            border="none"
           />
         </CustomInputContainer>
       </InputContainer>
@@ -193,8 +198,10 @@ const MainHeader = () => {
             value={ingredients}
             disabled={ingredientsLockView}
             setValue={setIngredients}
-            id="customInput"
+            id="customInput3"
             placeholder="Wpisz, wygeneruj lub pozostaw puste."
+            padding="0px"
+            border="none"
           />
         </CustomInputContainer>
       </InputContainer>

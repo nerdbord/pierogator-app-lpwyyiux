@@ -13,8 +13,6 @@ const CustomInputDumplingName = styled.input`
   line-height: var(--h3-lh);
   height: 20px;
   letter-spacing: 0%;
-
-  padding: 16px;
   border-radius: 4px;
   border: 1px solid var(--gray-background, #f9f9f9);
 
