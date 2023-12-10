@@ -1,7 +1,7 @@
 import { Ingredient } from "../hooks/useRecipesHelpers/generateRecipeIngredients";
 import { Instructions } from "../hooks/useRecipesHelpers/generateRecipeInstructions";
 
-export default class DumplingRecipe implements DumplingRecipe {
+export default class DumplingRecipe {
   name: string;
   imageSrc: string;
   ingredients: {

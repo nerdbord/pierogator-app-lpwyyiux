@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export default function useFindRecipeById(id: string) {
-  const findRecipeById = async () => {
+export default function useDelUserDumpling(id: number) {
+  const delUserDumpling = async () => {
     const headers = {
       "Content-Type": "application/json",
       Authorization: `${import.meta.env.VITE_REACT_APP_API_KEY}`,
@@ -16,5 +16,5 @@ export default function useFindRecipeById(id: string) {
         console.error("Error:", error.response ? error.response.data : error.message);
       });
   };
-  return findRecipeById;
+  return delUserDumpling;
 }

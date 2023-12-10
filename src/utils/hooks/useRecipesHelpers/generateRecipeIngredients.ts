@@ -43,7 +43,7 @@ export default async function generateRecipeIngredients({
           Take notice that all of generated data should be in polish language.
           Whilst creating ingredients take into accout user provided ingredients and add some of yours if needed (but take into account user notes, example: if they're allergic to sth don't add such ingredients, or if they're vegan remove any animal products).
           Ingredients name should contain ingredient name (user will provide you ingredients, some of these you should deduce from fillings and dough recipes, whilst taking into consideration user notes), their quantity is based on real life quantities when thinking of such ingredient, e.g. ml, cup, grams.
-          You should return only JSON of code of ingredients object.
+          Returned response should contain only ingredients typescript object in JSON format.
         `,
       },
       {
@@ -61,7 +61,7 @@ export default async function generateRecipeIngredients({
   return axios
     .post("https://training.nerdbord.io/api/v1/openai/chat/completions", requestData, { headers })
     .then((response) => {
-      // console.log("Response:", response.data.choices[0].message.content);
+      console.log("Response:", response.data.choices[0].message.content);
       return response.data.choices[0].message.content;
     })
     .catch((error) => {

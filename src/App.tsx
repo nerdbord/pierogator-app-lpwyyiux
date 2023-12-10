@@ -27,9 +27,10 @@ function App() {
     <Router>
       <GlobalStyle />
       <Routes>
-        <Route path="/config" element={<ConfigDumplingPage />} />
-        <Route path="/recipe" element={<DumplingRecipePage configPath="/config" proceedPath="/" />} />
-        <Route path="/" element={<GalleryPage dumplingPath="/config" />}></Route>
+        <Route path="/" element={<ConfigDumplingPage />} />
+        <Route path="/recipe" element={<DumplingRecipePage configPath="/" proceedPath="/gallery" />} />
+        <Route path="/gallery" element={<GalleryPage dumplingPath="/" />}></Route>
+        <Route path="/dumpling_preview" element={<></>}></Route>
       </Routes>
     </Router>
   );
