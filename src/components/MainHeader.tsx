@@ -1,12 +1,11 @@
 import styled from "styled-components";
+import { device } from "../GlobalStyles";
 import ButtonLock from "../assets/ButtonLock.svg";
 import ButtonUnlock from "../assets/ButtonUnlock.svg";
-import Logo from "../assets/Header.svg";
 import { useStore } from "../store";
 import useAiGeneratedDumpling from "../utils/useAiGeneratedDumpling";
 import TextArea from "./RecipeSection/TextArea";
 import DumplingIcon from "./icons/DumplingIcon";
-import { device } from "../GlobalStyles";
 
 export const Container = styled.div`
   display: flex;
@@ -154,10 +153,10 @@ const MainHeader = () => {
     filling,
     isLoading,
   } = useStore();
+
   return (
     <>
       <Container>
-        {/* <Header src={Logo} alt="logo" /> */}
         <IngredientsComponent>
           <TitleWrapper>
             <DumplingIcon />

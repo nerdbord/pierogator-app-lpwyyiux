@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items:center
+  align-items: center;
   width: 100%;
   height: auto;
 
@@ -26,10 +26,7 @@ function App() {
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<ConfigDumplingPage />} />
-        <Route
-          path="/recipes"
-          element={<DumplingRecipePage configPath="/" proceedPath="/gallery" />}
-        />
+        <Route path="/recipes" element={<DumplingRecipePage configPath="/" proceedPath="/gallery" />} />
       </Routes>
     </Router>
   );

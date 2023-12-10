@@ -1,17 +1,17 @@
 import styled from "styled-components";
 import { useStore } from "../store";
 
+import { device } from "../GlobalStyles";
 import {
+  Container,
   GenerateButton,
   GenerateComponent,
   IngredientsComponent,
   Label,
   Title,
   TitleWrapper,
-  Container,
 } from "./MainHeader";
 import DumplingIcon from "./icons/DumplingIcon";
-import { device } from "../GlobalStyles";
 
 const CustomInputDumplingName = styled.input`
   color: var(--dark-green, #002902);
@@ -67,26 +67,22 @@ export default function DumplingSection(props: DumplingSectionProps) {
           <DumplingIcon />
           <Title>Pieróg</Title>
         </TitleWrapper>
-        <GenerateButton onClick={props.buttonAction}>
-          {props.buttonText || "Generuj"}
-        </GenerateButton>
+        <GenerateButton onClick={props.buttonAction}>{props.buttonText || "Generuj"}</GenerateButton>
       </IngredientsComponent>
-      <GenerateComponent>
-        {generatedDumplingImage && (
-          <ImageDumpling
-            src={generatedDumplingImage}
-            alt="Wygenerowany Pieróg"
+      {generatedDumplingImage && (
+        <GenerateComponent>
+          <ImageDumpling src={generatedDumplingImage} alt="Wygenerowany Pieróg" />
+          {props.descriptionTitle && <Label>{props.descriptionTitle}</Label>}
+          <CustomInputDumplingName
+            required
+            value={dumplingName}
+            onChange={handleDumplingNameUpdate}
+            id="customInput"
+            type="text"
+            placeholder="Nazwa pieroga"
           />
-        )}
-        {props.descriptionTitle && <Label>{props.descriptionTitle}</Label>}
-        <CustomInputDumplingName
-          value={dumplingName}
-          onChange={handleDumplingNameUpdate}
-          id="customInput"
-          type="text"
-          placeholder="Nazwa pieroga"
-        />
-      </GenerateComponent>
+        </GenerateComponent>
+      )}
     </Container>
   );
 }
