@@ -1,4 +1,5 @@
 import create from "zustand";
+import DumplingRecipe, { sampleDumplingRecipe } from "./utils/Classes/DumplingRecipe";
 
 interface StoreState {
   isLoading: boolean;
@@ -19,6 +20,10 @@ interface StoreState {
   setGeneratedDumplingImage: (image: string) => void;
   dumplingName: string;
   setDumplingName: (name: string) => void;
+  dumplingNotes: string;
+  setDumplingNotes: (dumplingNotes: string) => void;
+  recipe: DumplingRecipe;
+  setRecipe: (recipe: DumplingRecipe) => void;
 }
 
 export const useStore = create<StoreState>((set) => ({
@@ -42,4 +47,8 @@ export const useStore = create<StoreState>((set) => ({
     set({ generatedDumplingImage: image }),
   dumplingName: "",
   setDumplingName: (dumplingName: string) => set({ dumplingName }),
+  dumplingNotes: "",
+  setDumplingNotes: (dumplingNotes: string) => set({ dumplingNotes }),
+  recipe: sampleDumplingRecipe,
+  setRecipe: (recipe: DumplingRecipe) => set({ recipe }),
 }));

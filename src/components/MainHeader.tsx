@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 import ButtonLock from "../assets/ButtonLock.png";
 import ButtonUnlock from "../assets/ButtonUnlock.png";
@@ -7,7 +6,7 @@ import { useStore } from "../store";
 import DumplingIcon from "./icons/DumplingIcon";
 import useAiGeneratedDumpling from "../utils/useAiGeneratedDumpling";
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 375px;
@@ -75,17 +74,6 @@ const CustomInput = styled.input`
   background: transparent;
 `;
 
-export const CustomInputDumplingName = styled.input`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  border: 1px solid var(--Gray-light, #e8e8e8);
-  border-radius: 4px;
-  padding: 0.5rem;
-  background: var(--Gray-background, #f9f9f9);
-  margin-top: 4px;
-`;
-
 const ButtonUnlockStyled = styled.img`
   padding: 0;
   border-radius: 0 4px 4px 0;
@@ -102,24 +90,6 @@ const InputContainer = styled.div`
   align-items: flex-start;
   width: 100%;
   margin-top: 20px;
-`;
-
-export const ButtonGoNext = styled.button`
-  border: none;
-  border-radius: 4px;
-  gap: 10px;
-  padding: 1rem;
-  background: var(--dark-green);
-  color: white;
-  width: 100%;
-  height: auto;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 10px;
-
-  &:hover {
-    background-color: var(--green);
-  }
 `;
 
 export const GenerateComponent = styled.div`
@@ -146,17 +116,10 @@ const MainHeader = () => {
     filling,
     isLoading,
   } = useStore();
-
-  useEffect(
-    () => console.log(dough, ingredients, filling),
-    [dough, ingredients, filling]
-  );
   return (
     <Container>
       <Header src={Logo} alt="logo" />
       <IngredientsComponent>
-        {/* <IngredientsLogo src={Ingredients} alt="ingredients" />
-         */}
         <TitleWrapper>
           <DumplingIcon />
           <Title>Składniki</Title>
