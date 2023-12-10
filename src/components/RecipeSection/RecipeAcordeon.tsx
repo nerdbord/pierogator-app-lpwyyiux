@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import styled from "styled-components";
+import Arrow from "../../assets/Arrow.svg";
 import { Ingredient, ingredients } from "../../utils/hooks/useRecipesHelpers/generateRecipeIngredients";
 import { Instructions } from "../../utils/hooks/useRecipesHelpers/generateRecipeInstructions";
 
@@ -12,11 +13,24 @@ const RecipeAcordeonWrapper = styled.div`
   gap: 4px;
 `;
 const AccordeonButton = styled.button`
+  position: relative;
+  font-size: 16px;
+  height: 24px;
   background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
   padding: 12px 16px 12px 16px;
+  text-align: left;
+  color: var(--gray-dark, #969696);
+  box-sizing: content-box;
+`;
+const ButtonArrow = styled.img`
+  position: absolute;
+  /* padding of accordeon button */
+  right: 16px;
+  top: 12px;
+  /* transform: rotate(180deg); */
 `;
 const RecipeInstructionsWrapper = styled.div`
   display: flex;
@@ -50,9 +64,9 @@ export type RecipeAcordeonProps =
     };
 
 export default function RecipeAcordeon(props: RecipeAcordeonProps) {
-  const [acordeonState, setAcordeonState] = useState(false);
+  const [isAcordeonOn, setIsAcordeonOn] = useState(false);
   const toggleAcordeonState = () => {
-    setAcordeonState((prev) => !prev);
+    setIsAcordeonOn((prev) => !prev);
   };
   const data = useMemo(() => {
     try {
@@ -66,7 +80,6 @@ export default function RecipeAcordeon(props: RecipeAcordeonProps) {
           }
           index++;
           // @ts-ignore
-          // subcathegory = [] i do <subcath to robzić)
           elements.push(<RecipeTitle>{dictionary[`${key}`]}</RecipeTitle>);
           if (props.description === "Przygotowanie") {
             elements.push(
@@ -96,8 +109,11 @@ export default function RecipeAcordeon(props: RecipeAcordeonProps) {
   }, [props.data]);
   return (
     <RecipeAcordeonWrapper>
-      <AccordeonButton onClick={toggleAcordeonState}>{props.description}</AccordeonButton>
-      {acordeonState && <RecipeInstructionsWrapper>{...data}</RecipeInstructionsWrapper>}
+      <AccordeonButton onClick={toggleAcordeonState}>
+        {props.description}
+        <ButtonArrow src={Arrow} style={{ transform: `rotate(${isAcordeonOn ? "180deg" : "0"})` }}></ButtonArrow>
+      </AccordeonButton>
+      {isAcordeonOn && <RecipeInstructionsWrapper>{...data}</RecipeInstructionsWrapper>}
     </RecipeAcordeonWrapper>
   );
 }
