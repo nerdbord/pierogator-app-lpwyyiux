@@ -13,7 +13,6 @@ export const Container = styled.div`
   flex-direction: column;
   width: 100%;
   height: auto;
-  //padding: 0.5rem;
   padding: 0;
   margin: 0;
   overflow-x: hidden;
@@ -24,7 +23,7 @@ export const Container = styled.div`
   }
 `;
 
-const Header = styled.img`
+export const Header = styled.img`
   width: 100%;
   height: auto;
   object-fit: fill;
@@ -126,7 +125,7 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 90%;
+  width: 100%;
   margin-top: 20px;
 `;
 
@@ -157,7 +156,6 @@ const MainHeader = () => {
   } = useStore();
   return (
     <>
-      <Header src={Logo} alt="logo" />
       <Container>
         {/* <Header src={Logo} alt="logo" /> */}
         <IngredientsComponent>
