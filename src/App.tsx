@@ -1,15 +1,32 @@
 import { Route, HashRouter as Router, Routes } from "react-router-dom";
 import styled from "styled-components";
-import GlobalStyle from "./GlobalStyles";
+import GlobalStyle, { device } from "./GlobalStyles";
 import ConfigDumplingPage from "./pages/ConfigDumplingPage";
 import DumplingRecipePage from "./pages/DumplingRecipePage";
+
+// export const Container = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   width: 375px;
+//   height: auto;
+//   padding: 0.5rem;
+// `;
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 375px;
+  justify-content: center;
+  align-items:center
+  width: 100%;
   height: auto;
-  padding: 0.5rem;
+  //padding: 0.5rem;
+
+  overflow-x: hidden;
+
+  @media ${device.mobile} {
+    border: none;
+    width: 100%;
+  }
 `;
 
 function App() {
@@ -18,7 +35,10 @@ function App() {
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<ConfigDumplingPage />} />
-        <Route path="/recipes" element={<DumplingRecipePage configPath="/" proceedPath="/gallery" />} />
+        <Route
+          path="/recipes"
+          element={<DumplingRecipePage configPath="/" proceedPath="/gallery" />}
+        />
       </Routes>
     </Router>
   );

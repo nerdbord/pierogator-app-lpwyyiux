@@ -6,18 +6,34 @@ import { useStore } from "../store";
 import useAiGeneratedDumpling from "../utils/useAiGeneratedDumpling";
 import TextArea from "./RecipeSection/TextArea";
 import DumplingIcon from "./icons/DumplingIcon";
+import { device } from "../GlobalStyles";
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 375px;
+  width: 100%;
   height: auto;
-  padding: 0.5rem;
+  //padding: 0.5rem;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+
+  @media ${device.mobile} {
+    border: none;
+    width: 100%;
+  }
 `;
 
 const Header = styled.img`
-  width: 375px;
+  width: 100%;
   height: auto;
+  object-fit: fill;
+
+  @media ${device.mobile} {
+    border: none;
+    width: 100%;
+    object-fit: cover;
+  }
 `;
 
 export const IngredientsComponent = styled.div`
@@ -25,6 +41,7 @@ export const IngredientsComponent = styled.div`
   justify-content: space-between;
   margin-top: 20px;
   margin-bottom: 5px;
+  width: 100%;
 `;
 
 export const TitleWrapper = styled.div`
@@ -49,6 +66,7 @@ export const GenerateButton = styled.button`
   border: 1px solid var(--gray, #d6d6d6);
   background: var(--white, #fff);
   text-transform: capitalize;
+  color: inherit;
 
   &:hover {
     border: 1px solid var(--Gray, #d6d6d6);
@@ -108,13 +126,14 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 100%;
+  width: 90%;
   margin-top: 20px;
 `;
 
 export const GenerateComponent = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 const MainHeader = () => {
@@ -137,75 +156,78 @@ const MainHeader = () => {
     isLoading,
   } = useStore();
   return (
-    <Container>
+    <>
       <Header src={Logo} alt="logo" />
-      <IngredientsComponent>
-        <TitleWrapper>
-          <DumplingIcon />
-          <Title>Składniki</Title>
-        </TitleWrapper>
-        {isLoading && <p>Loading...</p>}
+      <Container>
+        {/* <Header src={Logo} alt="logo" /> */}
+        <IngredientsComponent>
+          <TitleWrapper>
+            <DumplingIcon />
+            <Title>Składniki</Title>
+          </TitleWrapper>
+          {isLoading && <p>Loading...</p>}
 
-        <GenerateButton onClick={generateGptResponse}>Generuj</GenerateButton>
-      </IngredientsComponent>
-      <InputContainer>
-        <Label htmlFor="customInput">Ciasto</Label>
-        <CustomInputContainer>
-          <ButtonUnlockStyled
-            onClick={() => setDoughLockView(!doughLockView)}
-            src={doughLockView ? ButtonLock : ButtonUnlock}
-            alt="unlock"
-          />
-          <TextArea
-            value={dough}
-            disabled={doughLockView}
-            setValue={setDough}
-            id="customInput1"
-            placeholder="Wpisz, wygeneruj lub pozostaw puste."
-            padding="0px"
-            border="none"
-          />
-        </CustomInputContainer>
-      </InputContainer>
-      <InputContainer>
-        <Label htmlFor="customInput">Nadzienie</Label>
-        <CustomInputContainer>
-          <ButtonUnlockStyled
-            onClick={() => setFillingLockView(!fillingLockView)}
-            src={fillingLockView ? ButtonLock : ButtonUnlock}
-            alt="unlock"
-          />
-          <TextArea
-            value={filling}
-            disabled={fillingLockView}
-            setValue={setFilling}
-            id="customInput2"
-            placeholder="Wpisz, wygeneruj lub pozostaw puste."
-            padding="0px"
-            border="none"
-          />
-        </CustomInputContainer>
-      </InputContainer>
-      <InputContainer>
-        <Label htmlFor="customInput">Składniki</Label>
-        <CustomInputContainer>
-          <ButtonUnlockStyled
-            onClick={() => setIngredientsLockView(!ingredientsLockView)}
-            src={ingredientsLockView ? ButtonLock : ButtonUnlock}
-            alt="unlock"
-          />
-          <TextArea
-            value={ingredients}
-            disabled={ingredientsLockView}
-            setValue={setIngredients}
-            id="customInput3"
-            placeholder="Wpisz, wygeneruj lub pozostaw puste."
-            padding="0px"
-            border="none"
-          />
-        </CustomInputContainer>
-      </InputContainer>
-    </Container>
+          <GenerateButton onClick={generateGptResponse}>Generuj</GenerateButton>
+        </IngredientsComponent>
+        <InputContainer>
+          <Label htmlFor="customInput">Ciasto</Label>
+          <CustomInputContainer>
+            <ButtonUnlockStyled
+              onClick={() => setDoughLockView(!doughLockView)}
+              src={doughLockView ? ButtonLock : ButtonUnlock}
+              alt="unlock"
+            />
+            <TextArea
+              value={dough}
+              disabled={doughLockView}
+              setValue={setDough}
+              id="customInput1"
+              placeholder="Wpisz, wygeneruj lub pozostaw puste."
+              padding="0px"
+              border="none"
+            />
+          </CustomInputContainer>
+        </InputContainer>
+        <InputContainer>
+          <Label htmlFor="customInput">Nadzienie</Label>
+          <CustomInputContainer>
+            <ButtonUnlockStyled
+              onClick={() => setFillingLockView(!fillingLockView)}
+              src={fillingLockView ? ButtonLock : ButtonUnlock}
+              alt="unlock"
+            />
+            <TextArea
+              value={filling}
+              disabled={fillingLockView}
+              setValue={setFilling}
+              id="customInput2"
+              placeholder="Wpisz, wygeneruj lub pozostaw puste."
+              padding="0px"
+              border="none"
+            />
+          </CustomInputContainer>
+        </InputContainer>
+        <InputContainer>
+          <Label htmlFor="customInput">Składniki</Label>
+          <CustomInputContainer>
+            <ButtonUnlockStyled
+              onClick={() => setIngredientsLockView(!ingredientsLockView)}
+              src={ingredientsLockView ? ButtonLock : ButtonUnlock}
+              alt="unlock"
+            />
+            <TextArea
+              value={ingredients}
+              disabled={ingredientsLockView}
+              setValue={setIngredients}
+              id="customInput3"
+              placeholder="Wpisz, wygeneruj lub pozostaw puste."
+              padding="0px"
+              border="none"
+            />
+          </CustomInputContainer>
+        </InputContainer>
+      </Container>
+    </>
   );
 };
 

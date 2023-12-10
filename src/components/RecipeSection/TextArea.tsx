@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
+import { device } from "../../GlobalStyles";
 
 export const CustomTextarea = styled.textarea`
   color: var(--dark-green, #002902);
@@ -17,11 +18,17 @@ export const CustomTextarea = styled.textarea`
   width: 100%;
   resize: none;
   overflow: hidden;
+
   &:focus {
     outline: none;
   }
-`;
 
+  @media ${device.mobile} {
+    &:focus {
+      font-size: 1rem;
+    }
+  }
+`;
 export interface TextAreaProps {
   value: string;
   setValue: (value: string) => void;

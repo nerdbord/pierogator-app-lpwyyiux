@@ -12,6 +12,7 @@ export const CtaButton = styled.button`
   font-size: 14px;
   font-weight: 600;
   margin-top: 10px;
+  width: 100%;
 
   &:hover {
     background-color: var(--green);

@@ -1,8 +1,17 @@
 import styled from "styled-components";
 import { useStore } from "../store";
 
-import { GenerateButton, GenerateComponent, IngredientsComponent, Label, Title, TitleWrapper } from "./MainHeader";
+import {
+  GenerateButton,
+  GenerateComponent,
+  IngredientsComponent,
+  Label,
+  Title,
+  TitleWrapper,
+  Container,
+} from "./MainHeader";
 import DumplingIcon from "./icons/DumplingIcon";
+import { device } from "../GlobalStyles";
 
 const CustomInputDumplingName = styled.input`
   color: var(--dark-green, #002902);
@@ -22,6 +31,16 @@ const CustomInputDumplingName = styled.input`
     border: 1px solid var(--gray-light, #e8e8e8);
     outline: none;
   }
+
+  @media ${device.mobile} {
+    &:focus {
+      font-size: 1rem;
+    }
+  }
+`;
+
+const ImageDumpling = styled.img`
+  width: 100%;
 `;
 
 export type DumplingSectionProps = {
@@ -42,16 +61,23 @@ export default function DumplingSection(props: DumplingSectionProps) {
   };
 
   return (
-    <>
+    <Container>
       <IngredientsComponent>
         <TitleWrapper>
           <DumplingIcon />
           <Title>Pieróg</Title>
         </TitleWrapper>
-        <GenerateButton onClick={props.buttonAction}>{props.buttonText || "Generuj"}</GenerateButton>
+        <GenerateButton onClick={props.buttonAction}>
+          {props.buttonText || "Generuj"}
+        </GenerateButton>
       </IngredientsComponent>
       <GenerateComponent>
-        {generatedDumplingImage && <img src={generatedDumplingImage} alt="Wygenerowany Pieróg" />}
+        {generatedDumplingImage && (
+          <ImageDumpling
+            src={generatedDumplingImage}
+            alt="Wygenerowany Pieróg"
+          />
+        )}
         {props.descriptionTitle && <Label>{props.descriptionTitle}</Label>}
         <CustomInputDumplingName
           value={dumplingName}
@@ -61,6 +87,6 @@ export default function DumplingSection(props: DumplingSectionProps) {
           placeholder="Nazwa pieroga"
         />
       </GenerateComponent>
-    </>
+    </Container>
   );
 }
