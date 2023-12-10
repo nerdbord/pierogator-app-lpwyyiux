@@ -55,7 +55,7 @@ export default async function generateRecipeIngredients({
 
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `${import.meta.env.VITE_REACT_APP_API_KEY}`,
+    Authorization: `${import.meta.env.VITE_REACT_APP_OPENAI_KEY}`,
   };
 
   return axios
