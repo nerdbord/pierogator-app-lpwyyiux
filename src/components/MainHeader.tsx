@@ -6,6 +6,7 @@ import { useStore } from "../store";
 import useAiGeneratedDumpling from "../utils/hooks/useAiGeneratedDumpling";
 import TextArea from "./RecipeSection/TextArea";
 import DumplingIcon from "./icons/DumplingIcon";
+import Loader from "./Loader";
 
 export const Container = styled.div`
   display: flex;
@@ -72,7 +73,7 @@ export const GenerateButton = styled.button`
 
 const CustomInputContainer = styled.div`
   display: flex;
-  width: 100%;
+  //width: 100%;
   align-items: flex-start;
   border: 1px solid var(--Gray-light, #e8e8e8);
   border-radius: 4px;
@@ -99,7 +100,7 @@ export const Label = styled.label`
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  //align-items: flex-start;
   width: 100%;
   margin-top: 24px;
 `;
@@ -108,6 +109,11 @@ export const GenerateComponent = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+`;
+
+export const LogoBtnWrapper = styled.div`
+  display: flex;
+  gap: 10px;
 `;
 
 const MainHeader = () => {
@@ -127,7 +133,7 @@ const MainHeader = () => {
     setIngredientsLockView,
     ingredientsLockView,
     filling,
-    isLoading,
+    isLoadingDumplings,
   } = useStore();
 
   return (
@@ -138,9 +144,12 @@ const MainHeader = () => {
             <DumplingIcon />
             <Title>Składniki</Title>
           </TitleWrapper>
-          {isLoading && <p>Loading...</p>}
-
-          <GenerateButton onClick={generateGptResponse}>Generuj</GenerateButton>
+          <LogoBtnWrapper>
+            {isLoadingDumplings && <Loader />}
+            <GenerateButton onClick={generateGptResponse}>
+              Generuj
+            </GenerateButton>
+          </LogoBtnWrapper>
         </IngredientsComponent>
         <InputContainer>
           <Label htmlFor="customInput">Ciasto</Label>

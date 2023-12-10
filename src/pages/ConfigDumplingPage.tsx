@@ -18,9 +18,15 @@ export default function ConfigDumplingPage() {
       <Header src={Logo} alt="logo" />
       <Container>
         <MainHeader />
-        <DumplingSection buttonText="generuj" buttonAction={generateDumpling} descriptionTitle="nazwa" />
+        <DumplingSection
+          buttonText="generuj"
+          buttonAction={generateDumpling}
+          descriptionTitle="nazwa"
+        />
         {generatedDumplingImage && (
-          <CtaButton onClick={handleDumplingCreation}>Zapisz i przejdź do tworzenia przepisu</CtaButton>
+          <CtaButton onClick={handleDumplingCreation}>
+            Zapisz i przejdź do tworzenia przepisu
+          </CtaButton>
         )}
       </Container>
     </>

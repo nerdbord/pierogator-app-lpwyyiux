@@ -2,9 +2,16 @@ import axios from "axios";
 import { useStore } from "../../store";
 
 const useDumplingGenerator = () => {
-  const { dough, filling, ingredients, setGeneratedDumplingImage } = useStore();
+  const {
+    dough,
+    filling,
+    ingredients,
+    setGeneratedDumplingImage,
+    setIsLoadingImage,
+  } = useStore();
 
   const generateDumplingImage = async () => {
+    setIsLoadingImage(true);
     if (!dough || !filling) {
       alert("Proszę wybrać ciasto i farsz!");
       return;
@@ -30,6 +37,8 @@ const useDumplingGenerator = () => {
       setGeneratedDumplingImage(response.data.data[0].url);
     } catch (error) {
       console.error("Błąd podczas generowania obrazu pieroga:", error);
+    } finally {
+      setIsLoadingImage(false);
     }
   };
 
