@@ -4,7 +4,7 @@ import generateRecipeIngredients from "./useRecipesHelpers/generateRecipeIngredi
 import generateRecipeInstructions from "./useRecipesHelpers/generateRecipeInstructions";
 
 const useRecipesGenerator = () => {
-  const { dumplingName, dumplingNotes, dough, filling, ingredients, generatedDumplingImage, setRecipe} = useStore();
+  const { dumplingName, dumplingNotes, dough, filling, ingredients, generatedDumplingImage, setRecipe } = useStore();
   const generateDumplingRecipe = async () => {
     // last one === uwagi
     const recipeIngredients = await generateRecipeIngredients({
@@ -20,9 +20,13 @@ const useRecipesGenerator = () => {
       filling,
       notes: dumplingNotes,
     });
-    const DumplingRecipeInstance = new DumplingRecipe(dumplingName, generatedDumplingImage, JSON.parse(`${recipeIngredients}`), JSON.parse(`${recipeInstructions}`),
+    const DumplingRecipeInstance = new DumplingRecipe(
+      dumplingName,
+      generatedDumplingImage,
+      JSON.parse(`${recipeIngredients}`),
+      JSON.parse(`${recipeInstructions}`).recipeInstructions
     );
-    setRecipe(DumplingRecipeInstance)
+    setRecipe(DumplingRecipeInstance);
     return DumplingRecipeInstance;
   };
 
