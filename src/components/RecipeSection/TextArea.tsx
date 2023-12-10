@@ -15,7 +15,7 @@ export const CustomTextarea = styled.textarea`
   margin: 0px;
 
   background: var(--gray-background, #f9f9f9);
-  width: 100%;
+  //width: 100%;
   resize: none;
   overflow: hidden;
 

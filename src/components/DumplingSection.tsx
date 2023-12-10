@@ -25,7 +25,7 @@ const CustomInputDumplingName = styled.input`
   border: 1px solid var(--gray-background, #f9f9f9);
   padding: 16px;
   background: var(--gray-background, #f9f9f9);
-  width: 100%;
+  //width: 100%;
 
   &:focus {
     border: 1px solid var(--gray-light, #e8e8e8);
@@ -112,7 +112,12 @@ export default function DumplingSection(props: DumplingSectionProps) {
             alt="Wygenerowany Pieróg"
           />
           <DumplingNameSection>
-            {props.descriptionTitle && <Label>{props.descriptionTitle}</Label>}
+            {props.descriptionTitle && (
+              <Label>
+                {props.descriptionTitle.charAt(0).toUpperCase() +
+                  props.descriptionTitle.slice(1)}
+              </Label>
+            )}
             <CustomInputDumplingName
               required
               value={dumplingName}

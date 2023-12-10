@@ -65,6 +65,10 @@ export const GenerateButton = styled.button`
   text-transform: capitalize;
   color: inherit;
 
+  &:focus {
+    cursor: pointer;
+  }
+
   &:hover {
     border: 1px solid var(--Gray, #d6d6d6);
     background: var(--Gray-light, #e8e8e8);
@@ -86,12 +90,16 @@ const CustomInputContainer = styled.div`
 const ButtonUnlockStyled = styled.img`
   padding: 0;
   border-radius: 0 4px 4px 0;
+
+  &:focus {
+    cursor: pointer;
+  }
 `;
 
 export const Label = styled.label`
   align-self: flex-start;
   font-size: 14px;
-  text-transform: capitalize;
+  //text-transform: capitalize;
   font-weight: 500;
   font-family: "Poppins";
   color: var(--dark-green, #002902);
@@ -108,7 +116,7 @@ const InputContainer = styled.div`
 export const GenerateComponent = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  //width: 100%;
 `;
 
 export const LogoBtnWrapper = styled.div`
