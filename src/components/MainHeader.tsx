@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ButtonLock from "../assets/ButtonLock.svg";
 import ButtonUnlock from "../assets/ButtonUnlock.svg";
-import Logo from "../assets/Header.png";
+import Logo from "../assets/Header.svg";
 import { useStore } from "../store";
 import useAiGeneratedDumpling from "../utils/useAiGeneratedDumpling";
 import TextArea from "./RecipeSection/TextArea";
