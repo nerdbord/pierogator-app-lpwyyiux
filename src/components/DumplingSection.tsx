@@ -69,10 +69,6 @@ export default function DumplingSection(props: DumplingSectionProps) {
     if (e.target.value.length <= 40) setDumplingName(e.target.value);
   };
 
-  const handleDescriptionSave = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // save in memory
-  };
-
   return (
     <DumplingSectionWrapper>
       <IngredientsComponent>
