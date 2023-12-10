@@ -1,16 +1,17 @@
 import styled from "styled-components";
 import { useStore } from "../store";
-import { GenerateButton, GenerateComponent, IngredientsComponent, Title, TitleWrapper } from "./MainHeader";
+import useDumplingGenerator from "../utils/useDumplingsGenerator";
+
+import {
+  GenerateButton,
+  GenerateComponent,
+  IngredientsComponent,
+  Title,
+  TitleWrapper,
+} from "./MainHeader";
 import DumplingIcon from "./icons/DumplingIcon";
 
-const StyledImage = styled.img`
-  /* height chyba nie konieczny, zobaczy się jak będziemy pracować z większym layoutem */
-  /* height: 233px; */
-  border-radius: 4px;
-  object-fit: cover;
-`;
-
-export const CustomInputDumplingName = styled.input`
+const CustomInputDumplingName = styled.input`
   color: var(--dark-green, #002902);
 
   font-family: "Poppins";
