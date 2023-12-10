@@ -10,12 +10,11 @@ const CustomInputDumplingName = styled.input`
   font-family: "Poppins";
   font-weight: 500;
   font-size: var(--h3-fs);
-  line-height: var(--h3-lh);
-  height: 20px;
+  line-height: 20px;
   letter-spacing: 0%;
   border-radius: 4px;
   border: 1px solid var(--gray-background, #f9f9f9);
-
+  padding: 16px;
   background: var(--gray-background, #f9f9f9);
   width: 100%;
 

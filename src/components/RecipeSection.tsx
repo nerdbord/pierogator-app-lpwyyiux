@@ -25,7 +25,8 @@ export default function RecipeSection() {
           id="recipeInput"
           disabled={false}
           padding={"16px"}
-          border={`border: 1px solid var(--gray-light, #e8e8e8)`}
+          border={`1px solid var(--gray-light, #e8e8e8)`}
+          rowsOnStart={2}
         ></TextArea>
       </GenerateComponent>
 
