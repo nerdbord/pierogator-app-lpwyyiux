@@ -35,10 +35,8 @@ export interface TextAreaProps {
 export default function TextArea(props: TextAreaProps) {
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const textarea = event.target;
-    // 20 = lineheight
-    if (textarea.scrollHeight < 20) textarea.style.height = "fit-content"; // Reset values for recalculations
+    textarea.style.height = "fit-content"; // Reset values for recalculations
     textarea.style.padding = "0";
-    // NOTE: not sure if this would be good, i mean it's chanigng its height by 2 px when the 2 lines appear vs placeholder which takes up 2 lines... Also on the very beginning height is not well suited
     textarea.style.height = `${textarea.scrollHeight}px`;
     textarea.style.padding = `${props.padding}`;
     props.setValue(event.target.value);
@@ -52,6 +50,7 @@ export default function TextArea(props: TextAreaProps) {
       value={props.value}
       onChange={handleInputChange}
       style={{ padding: `${props.padding}`, border: `${props.border}` }}
+      rows={1}
     />
   );
 }
