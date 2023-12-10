@@ -71,23 +71,3 @@ export default function TextArea(props: TextAreaProps) {
     />
   );
 }
-
-// function getVerticalPaddingSum(padding: string): number {
-//   const values = padding.split(" ").map((str) => parseFloat(str));
-
-//   if (values.length === 1) {
-//     // If only one value provided, it's the same for all sides.
-//     return 2 * values[0];
-//   } else if (values.length === 2) {
-//     // If two values provided, first one is for top & bottom.
-//     return 2 * values[0];
-//   } else if (values.length === 3) {
-//     // If three values provided, first one is for top and second one is for bottom.
-//     return values[0] + values[2];
-//   } else if (values.length === 4) {
-//     // If all four separate values provided.
-//     return values[0] + values[2];
-//   }
-
-//   return 0; // Return 0 if no values provided.
-// }
