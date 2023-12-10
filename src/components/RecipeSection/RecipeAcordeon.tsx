@@ -38,13 +38,13 @@ const RecipeInstructionsWrapper = styled.div`
   gap: 9px;
   padding: 0px 16px 16px 16px;
 `;
-const RecipeTitle = styled.h3`
+export const RecipeTitle = styled.h3`
   font-weight: 700;
   &::first-letter {
     text-transform: uppercase;
   }
 `;
-const RecipeListItem = styled.div`
+export const RecipeListItem = styled.div`
   line-height: 20px;
 `;
 

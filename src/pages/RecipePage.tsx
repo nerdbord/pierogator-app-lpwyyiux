@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { Container } from "../App";
+import Logo from "../assets/Header.svg";
 import { CtaButton } from "../components/CtaButton";
 import DumplingSection from "../components/DumplingSection";
+import { Header } from "../components/MainHeader";
 import RecipeSection from "../components/RecipeSection";
 import { useStore } from "../store";
 import useShareDumpling from "../utils/hooks/useShareDumpling";
@@ -24,11 +26,13 @@ export default function DumplingRecipePage(props: DumplingRecipePageProps) {
     navigate(props.configPath);
   };
   return (
-    <Container>
-      {/* header */}
-      <DumplingSection buttonText="zmień" buttonAction={handleDumplingChangeRequest}></DumplingSection>
-      <RecipeSection></RecipeSection>
-      {generatedDumplingImage && <CtaButton onClick={handleDumplingShare}>Udostępnij Pieroga</CtaButton>}
-    </Container>
+    <>
+      <Header src={Logo} alt="logo"></Header>
+      <Container>
+        <DumplingSection buttonText="zmień" buttonAction={handleDumplingChangeRequest}></DumplingSection>
+        <RecipeSection></RecipeSection>
+        {generatedDumplingImage && <CtaButton onClick={handleDumplingShare}>Udostępnij Pieroga</CtaButton>}
+      </Container>
+    </>
   );
 }

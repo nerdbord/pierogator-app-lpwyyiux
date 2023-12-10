@@ -3,7 +3,7 @@ import { device } from "../GlobalStyles";
 import ButtonLock from "../assets/ButtonLock.svg";
 import ButtonUnlock from "../assets/ButtonUnlock.svg";
 import { useStore } from "../store";
-import useAiGeneratedDumpling from "../utils/useAiGeneratedDumpling";
+import useAiGeneratedDumpling from "../utils/hooks/useAiGeneratedDumpling";
 import TextArea from "./RecipeSection/TextArea";
 import DumplingIcon from "./icons/DumplingIcon";
 
@@ -37,8 +37,6 @@ export const Header = styled.img`
 export const IngredientsComponent = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
-  margin-bottom: 5px;
   width: 100%;
 `;
 
@@ -84,28 +82,6 @@ const CustomInputContainer = styled.div`
   gap: 12px;
 `;
 
-// const CustomInput = styled.textarea`
-//   color: var(--dark-green, #002902);
-
-//   font-family: "Poppins";
-//   font-weight: 500;
-//   font-size: var(--h3-fs);
-//   line-height: var(--h3-lh);
-//   height: 20px;
-//   letter-spacing: 0%;
-
-//   padding: 16px 16px 16px 12px;
-//   border-radius: 4px;
-//   border: 1px solid var(--gray-background, #f9f9f9);
-
-//   background: var(--gray-background, #f9f9f9);
-//   width: 100%;
-
-//   &:focus {
-//     outline: none;
-//   }
-// `;
-
 const ButtonUnlockStyled = styled.img`
   padding: 0;
   border-radius: 0 4px 4px 0;
@@ -125,7 +101,7 @@ const InputContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 24px;
 `;
 
 export const GenerateComponent = styled.div`

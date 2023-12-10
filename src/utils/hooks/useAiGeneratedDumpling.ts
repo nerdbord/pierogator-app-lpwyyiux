@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useStore } from "../store";
+import { useStore } from "../../store";
 
 const useAiGeneratedDumpling = () => {
   const { setDough, setFilling, setIngredients, setIsLoading, doughLockView, fillingLockView, ingredientsLockView } =

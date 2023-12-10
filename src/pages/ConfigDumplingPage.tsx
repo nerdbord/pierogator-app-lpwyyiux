@@ -6,14 +6,11 @@ import DumplingSection from "../components/DumplingSection";
 import MainHeader, { Header } from "../components/MainHeader";
 import { useStore } from "../store";
 import useDumplingGenerator from "../utils/hooks/useDumplingsGenerator";
-
 export default function ConfigDumplingPage() {
   const { generatedDumplingImage } = useStore();
   const navigate = useNavigate();
   const handleDumplingCreation = async () => {
-    // tutaj wsadzasz funkcję od save'owania składników i zdjęcia
-    // saveDataInMemory()
-    navigate("/recipes");
+    navigate("/recipe");
   };
   const generateDumpling = useDumplingGenerator();
   return (
