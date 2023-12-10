@@ -30,7 +30,6 @@ function App() {
         <Route path="/" element={<ConfigDumplingPage />} />
         <Route path="/recipe" element={<DumplingRecipePage configPath="/" proceedPath="/gallery" />} />
         <Route path="/gallery" element={<GalleryPage dumplingPath="/" />}></Route>
-        <Route path="/dumpling_preview" element={<></>}></Route>
       </Routes>
     </Router>
   );
