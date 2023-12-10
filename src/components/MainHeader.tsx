@@ -4,9 +4,9 @@ import ButtonLock from "../assets/ButtonLock.svg";
 import ButtonUnlock from "../assets/ButtonUnlock.svg";
 import { useStore } from "../store";
 import useAiGeneratedDumpling from "../utils/hooks/useAiGeneratedDumpling";
+import Loader from "./Loader";
 import TextArea from "./RecipeSection/TextArea";
 import DumplingIcon from "./icons/DumplingIcon";
-import Loader from "./Loader";
 
 export const Container = styled.div`
   display: flex;
@@ -150,9 +150,7 @@ const MainHeader = () => {
           </TitleWrapper>
           <LogoBtnWrapper>
             {isLoadingDumplings && <Loader />}
-            <GenerateButton onClick={generateGptResponse}>
-              Generuj
-            </GenerateButton>
+            <GenerateButton onClick={generateGptResponse}>Generuj</GenerateButton>
           </LogoBtnWrapper>
         </IngredientsComponent>
         <InputContainer>

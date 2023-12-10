@@ -31,21 +31,16 @@ const useAiGeneratedDumpling = () => {
     };
 
     try {
-      const response = await axios.post(
-        "https://training.nerdbord.io/api/v1/openai/chat/completions",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${import.meta.env.VITE_REACT_APP_OPENAI_KEY}`,
-          },
-        }
-      );
+      const response = await axios.post("https://training.nerdbord.io/api/v1/openai/chat/completions", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${import.meta.env.VITE_REACT_APP_OPENAI_KEY}`,
+        },
+      });
 
       const chatResponse = response.data.choices[0].message.content;
 
-      const firstSetRegex =
-        /1\.\sCiasto:\s(.*?)\s+Nadzienie:\s(.*?)\s+Składniki:\s(.*?)(?=\n|$)/;
+      const firstSetRegex = /1\.\sCiasto:\s(.*?)\s+Nadzienie:\s(.*?)\s+Składniki:\s(.*?)(?=\n|$)/;
 
       const match = firstSetRegex.exec(chatResponse);
 

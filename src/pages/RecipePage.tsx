@@ -20,7 +20,7 @@ export default function DumplingRecipePage(props: DumplingRecipePageProps) {
   const handleDumplingShare = async () => {
     // tutaj wsadzasz potem funkcję z kolejnego taska
     await shareDumpling();
-    // navigate(props.proceedPath);
+    navigate(props.proceedPath);
   };
   const handleDumplingChangeRequest = () => {
     navigate(props.configPath);
@@ -29,16 +29,9 @@ export default function DumplingRecipePage(props: DumplingRecipePageProps) {
     <>
       <Header src={Logo} alt="logo"></Header>
       <Container>
-        <DumplingSection
-          buttonText="zmień"
-          buttonAction={handleDumplingChangeRequest}
-        ></DumplingSection>
+        <DumplingSection buttonText="zmień" buttonAction={handleDumplingChangeRequest}></DumplingSection>
         <RecipeSection></RecipeSection>
-        {generatedDumplingImage && (
-          <CtaButton onClick={handleDumplingShare}>
-            Udostępnij Pieroga
-          </CtaButton>
-        )}
+        {generatedDumplingImage && <CtaButton onClick={handleDumplingShare}>Udostępnij Pieroga</CtaButton>}
       </Container>
     </>
   );

@@ -41,9 +41,11 @@ interface ingredients {
    dough: Ingredient[];
    filling: Ingredient[];
  }
- dough_preparation should contain instructions how to prepare dough provided from user. 
- filling_preparation should contain instructions how to prepare filling provided from user.
- forming_and_cooking_dumplings should contain instructions how to form and cook dumplings from user filling and dough.
+ Take into account information passed by user in notes, e.g if user want vegeterian dumplings, remove meat.
+ Don't numerate data inside arrays.
+ dough_preparation should contain instructions how to prepare dough provided from user, take into account notes aswell if they'll be useful. 
+ filling_preparation should contain instructions how to prepare filling provided from user, take into account notes aswell if they'll be useful.
+ forming_and_cooking_dumplings should contain instructions how to form and cook dumplings from user filling and dough, take into account notes aswell if they'll be useful.
  serving should contain information how dumplings should be served to the customers.
  Returned response should contain only recipeInstructions typescript object in JSON format.
 `,
@@ -61,19 +63,12 @@ interface ingredients {
   };
 
   return axios
-    .post(
-      "https://training.nerdbord.io/api/v1/openai/chat/completions",
-      requestData,
-      { headers }
-    )
+    .post("https://training.nerdbord.io/api/v1/openai/chat/completions", requestData, { headers })
     .then((response) => {
       console.log("Response:", response.data.choices[0].message.content);
       return response.data.choices[0].message.content;
     })
     .catch((error) => {
-      console.error(
-        "Error:",
-        error.response ? error.response.data : error.message
-      );
+      console.error("Error:", error.response ? error.response.data : error.message);
     });
 }
