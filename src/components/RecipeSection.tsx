@@ -7,12 +7,14 @@ import {
   GenerateComponent,
   IngredientsComponent,
   Label,
+  LogoBtnWrapper,
   Title,
   TitleWrapper,
 } from "./MainHeader";
 import RecipeAcordeon from "./RecipeSection/RecipeAcordeon";
 import TextArea from "./RecipeSection/TextArea";
 import DumplingIcon from "./icons/DumplingIcon";
+import Loader from "./Loader";
 
 const Bar = styled.div`
   height: 16px;
@@ -23,7 +25,8 @@ const Bar2 = styled.div`
 `;
 
 export default function RecipeSection() {
-  const { recipe, dumplingNotes, setDumplingNotes } = useStore();
+  const { recipe, dumplingNotes, setDumplingNotes, isLoadingRecipe } =
+    useStore();
   const generateRecipe = useRecipesGenerator();
   return (
     <Container>
@@ -33,7 +36,10 @@ export default function RecipeSection() {
             <DumplingIcon />
             <Title>Przepis</Title>
           </TitleWrapper>
-          <GenerateButton onClick={generateRecipe}>Generuj</GenerateButton>
+          <LogoBtnWrapper>
+            {isLoadingRecipe && <Loader />}
+            <GenerateButton onClick={generateRecipe}>Generuj</GenerateButton>
+          </LogoBtnWrapper>
         </IngredientsComponent>
         <Bar />
         <Label>Uwagi do przepisu</Label>

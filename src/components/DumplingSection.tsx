@@ -100,6 +100,7 @@ export default function DumplingSection(props: DumplingSectionProps) {
         </TitleWrapper>
         <LogoBtnWrapper>
           {isLoadingImage && <Loader />}
+
           <GenerateButton onClick={props.buttonAction}>
             {props.buttonText || "Generuj"}
           </GenerateButton>

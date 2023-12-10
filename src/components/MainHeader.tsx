@@ -77,7 +77,6 @@ export const GenerateButton = styled.button`
 
 const CustomInputContainer = styled.div`
   display: flex;
-  //width: 100%;
   align-items: flex-start;
   border: 1px solid var(--Gray-light, #e8e8e8);
   border-radius: 4px;
@@ -99,7 +98,6 @@ const ButtonUnlockStyled = styled.img`
 export const Label = styled.label`
   align-self: flex-start;
   font-size: 14px;
-  //text-transform: capitalize;
   font-weight: 500;
   font-family: "Poppins";
   color: var(--dark-green, #002902);
@@ -108,7 +106,6 @@ export const Label = styled.label`
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  //align-items: flex-start;
   width: 100%;
   margin-top: 24px;
 `;
@@ -116,7 +113,6 @@ const InputContainer = styled.div`
 export const GenerateComponent = styled.div`
   display: flex;
   flex-direction: column;
-  //width: 100%;
 `;
 
 export const LogoBtnWrapper = styled.div`
