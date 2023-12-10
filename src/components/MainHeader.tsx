@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import ButtonLock from "../assets/ButtonLock.png";
-import ButtonUnlock from "../assets/ButtonUnlock.png";
+import ButtonLock from "../assets/ButtonLock.svg";
+import ButtonUnlock from "../assets/ButtonUnlock.svg";
 import Logo from "../assets/Header.png";
 import { useStore } from "../store";
-import DumplingIcon from "./icons/DumplingIcon";
 import useAiGeneratedDumpling from "../utils/useAiGeneratedDumpling";
+import TextArea from "./RecipeSection/TextArea";
+import DumplingIcon from "./icons/DumplingIcon";
 
 export const Container = styled.div`
   display: flex;
@@ -47,6 +48,7 @@ export const GenerateButton = styled.button`
   border-radius: 4px;
   border: 1px solid var(--gray, #d6d6d6);
   background: var(--white, #fff);
+  text-transform: capitalize;
 
   &:hover {
     border: 1px solid var(--Gray, #d6d6d6);
@@ -65,23 +67,40 @@ const CustomInputContainer = styled.div`
   margin-top: 4px;
 `;
 
-const CustomInput = styled.input`
-  flex-grow: 1;
-  padding: 16px;
-  width: 100%;
-  border: none;
-  border-radius: 4px 0 0 4px;
-  background: transparent;
-`;
+// const CustomInput = styled.textarea`
+//   color: var(--dark-green, #002902);
+
+//   font-family: "Poppins";
+//   font-weight: 500;
+//   font-size: var(--h3-fs);
+//   line-height: var(--h3-lh);
+//   height: 20px;
+//   letter-spacing: 0%;
+
+//   padding: 16px 16px 16px 12px;
+//   border-radius: 4px;
+//   border: 1px solid var(--gray-background, #f9f9f9);
+
+//   background: var(--gray-background, #f9f9f9);
+//   width: 100%;
+
+//   &:focus {
+//     outline: none;
+//   }
+// `;
 
 const ButtonUnlockStyled = styled.img`
   padding: 0;
   border-radius: 0 4px 4px 0;
 `;
 
-const Label = styled.label`
+export const Label = styled.label`
   align-self: flex-start;
   font-size: 14px;
+  text-transform: capitalize;
+  font-weight: 500;
+  font-family: "Poppins";
+  color: var(--dark-green, #002902);
 `;
 
 const InputContainer = styled.div`
@@ -136,12 +155,11 @@ const MainHeader = () => {
             src={doughLockView ? ButtonLock : ButtonUnlock}
             alt="unlock"
           />
-          <CustomInput
+          <TextArea
             value={dough}
             disabled={doughLockView}
-            onChange={(e) => setDough(e.target.value)}
+            setValue={setDough}
             id="customInput"
-            type="text"
             placeholder="Wpisz, wygeneruj lub pozostaw puste."
           />
         </CustomInputContainer>
@@ -154,12 +172,11 @@ const MainHeader = () => {
             src={fillingLockView ? ButtonLock : ButtonUnlock}
             alt="unlock"
           />
-          <CustomInput
+          <TextArea
             value={filling}
             disabled={fillingLockView}
-            onChange={(e) => setFilling(e.target.value)}
+            setValue={setFilling}
             id="customInput"
-            type="text"
             placeholder="Wpisz, wygeneruj lub pozostaw puste."
           />
         </CustomInputContainer>
@@ -172,12 +189,11 @@ const MainHeader = () => {
             src={ingredientsLockView ? ButtonLock : ButtonUnlock}
             alt="unlock"
           />
-          <CustomInput
+          <TextArea
             value={ingredients}
             disabled={ingredientsLockView}
-            onChange={(e) => setIngredients(e.target.value)}
+            setValue={setIngredients}
             id="customInput"
-            type="text"
             placeholder="Wpisz, wygeneruj lub pozostaw puste."
           />
         </CustomInputContainer>

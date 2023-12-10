@@ -1,14 +1,7 @@
 import styled from "styled-components";
 import { useStore } from "../store";
-import useDumplingGenerator from "../utils/useDumplingsGenerator";
 
-import {
-  GenerateButton,
-  GenerateComponent,
-  IngredientsComponent,
-  Title,
-  TitleWrapper,
-} from "./MainHeader";
+import { GenerateButton, GenerateComponent, IngredientsComponent, Label, Title, TitleWrapper } from "./MainHeader";
 import DumplingIcon from "./icons/DumplingIcon";
 
 const CustomInputDumplingName = styled.input`
@@ -32,10 +25,6 @@ const CustomInputDumplingName = styled.input`
     border: 1px solid var(--gray-light, #e8e8e8);
     outline: none;
   }
-`;
-
-const DescriptionTitle = styled.h3`
-  color: var(--dark-green);
 `;
 
 export type DumplingSectionProps = {
@@ -66,7 +55,7 @@ export default function DumplingSection(props: DumplingSectionProps) {
       </IngredientsComponent>
       <GenerateComponent>
         {generatedDumplingImage && <img src={generatedDumplingImage} alt="Wygenerowany Pieróg" />}
-        {props.descriptionTitle && <DescriptionTitle>{props.descriptionTitle}</DescriptionTitle>}
+        {props.descriptionTitle && <Label>{props.descriptionTitle}</Label>}
         <CustomInputDumplingName
           value={dumplingName}
           onChange={handleDumplingNameUpdate}
@@ -78,5 +67,3 @@ export default function DumplingSection(props: DumplingSectionProps) {
     </>
   );
 }
-
-// Do zrobienia: usunąć zbędny kod np cta state ze Storea, + css, oraz w api zrobić backupowe obiekty w wypadku złego promptu.

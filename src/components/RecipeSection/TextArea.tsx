@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { useStore } from "../../store";
 
-const CustomInputRecipeVariant = styled.textarea`
+export const CustomTextarea = styled.textarea`
   color: var(--dark-green, #002902);
 
   font-family: "Poppins";
@@ -23,23 +22,32 @@ const CustomInputRecipeVariant = styled.textarea`
   }
 `;
 
-export default function TextArea() {
-  const { dumplingNotes, setDumplingNotes } = useStore();
+export interface TextAreaProps {
+  value: string;
+  setValue: (value: string) => void;
+  disabled: boolean;
+  placeholder: string;
+  id: string;
+}
+
+export default function TextArea(props: TextAreaProps) {
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     // setLines(event.target.value);
     const textarea = event.target;
-    textarea.style.height = "fit-content"; // Reset values for recalculations
+    textarea.style.height = "auto"; // Reset values for recalculations
     textarea.style.padding = "0";
     // NOTE: not sure if this would be good, i mean it's chanigng its height by 2 px when the 2 lines appear vs placeholder which takes up 2 lines... Also on the very beginning height is not well suited
     textarea.style.height = `${textarea.scrollHeight}px`;
     textarea.style.padding = "16px";
-    setDumplingNotes(event.target.value);
+    props.setValue(event.target.value);
   };
 
   return (
-    <CustomInputRecipeVariant
-      id="recipeInput"
-      placeholder="Przykład: chrupiące pierogi bez pieczenia, bez użycia miksera, przyjazne weganom"
+    <CustomTextarea
+      id={props.id}
+      placeholder={props.placeholder}
+      disabled={props.disabled}
+      value={props.value}
       onChange={handleInputChange}
     />
   );

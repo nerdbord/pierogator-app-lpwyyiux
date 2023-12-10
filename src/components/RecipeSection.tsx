@@ -6,7 +6,7 @@ import TextArea from "./RecipeSection/TextArea";
 import DumplingIcon from "./icons/DumplingIcon";
 
 export default function RecipeSection() {
-  const { recipe } = useStore();
+  const { recipe, dumplingNotes, setDumplingNotes } = useStore();
   const generateRecipe = useRecipesGenerator();
   return (
     <Container>
@@ -18,7 +18,13 @@ export default function RecipeSection() {
           </TitleWrapper>
           <GenerateButton onClick={generateRecipe}>Generuj</GenerateButton>
         </IngredientsComponent>
-        <TextArea></TextArea>
+        <TextArea
+          value={dumplingNotes}
+          setValue={setDumplingNotes}
+          placeholder="Przykład: chrupiące pierogi bez pieczenia, bez użycia miksera, przyjazne weganom"
+          id="recipeInput"
+          disabled={false}
+        ></TextArea>
       </GenerateComponent>
 
       <RecipeAcordeon description="Składniki" data={recipe.ingredients}></RecipeAcordeon>
