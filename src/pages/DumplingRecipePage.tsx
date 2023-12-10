@@ -3,6 +3,7 @@ import { Container } from "../App";
 import { CtaButton } from "../components/CtaButton";
 import DumplingSection from "../components/DumplingSection";
 import RecipeSection from "../components/RecipeSection";
+import useShareDumpling from "../utils/hooks/useShareDumpling";
 
 export type DumplingRecipePageProps = {
   configPath: string;
@@ -11,10 +12,11 @@ export type DumplingRecipePageProps = {
 
 export default function DumplingRecipePage(props: DumplingRecipePageProps) {
   const navigate = useNavigate();
+  const shareDumpling = useShareDumpling();
   const handleDumplingShare = async () => {
     // tutaj wsadzasz potem funkcję z kolejnego taska
-    // await shareRecipe();
-    navigate(props.proceedPath);
+    await shareDumpling();
+    // navigate(props.proceedPath);
   };
   const handleDumplingChangeRequest = () => {
     navigate(props.configPath);

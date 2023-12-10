@@ -39,12 +39,12 @@ const DescriptionTitle = styled.h3`
 `;
 
 export type DumplingSectionProps = {
-  buttonAction: ()=>void;
+  buttonAction: () => void;
   buttonText?: string;
   descriptionTitle?: string;
 };
 
-export default function DumplingSection(props: DumplingSectionProps ) {
+export default function DumplingSection(props: DumplingSectionProps) {
   const { generatedDumplingImage, setDumplingName, dumplingName } = useStore();
 
   const handleDumplingNameUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,9 +65,7 @@ export default function DumplingSection(props: DumplingSectionProps ) {
         <GenerateButton onClick={props.buttonAction}>{props.buttonText || "Generuj"}</GenerateButton>
       </IngredientsComponent>
       <GenerateComponent>
-        {generatedDumplingImage && (
-          <img src={generatedDumplingImage} alt="Wygenerowany Pieróg" />
-        )}
+        {generatedDumplingImage && <img src={generatedDumplingImage} alt="Wygenerowany Pieróg" />}
         {props.descriptionTitle && <DescriptionTitle>{props.descriptionTitle}</DescriptionTitle>}
         <CustomInputDumplingName
           value={dumplingName}
@@ -80,3 +78,5 @@ export default function DumplingSection(props: DumplingSectionProps ) {
     </>
   );
 }
+
+// Do zrobienia: usunąć zbędny kod np cta state ze Storea, + css, oraz w api zrobić backupowe obiekty w wypadku złego promptu.
