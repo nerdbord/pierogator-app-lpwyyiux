@@ -14,7 +14,7 @@ const useRecipesGenerator = () => {
     setRecipe,
     setIsLoadingRecipe,
   } = useStore();
-
+  
   const generateDumplingRecipe = async () => {
     setIsLoadingRecipe(true);
     try {
