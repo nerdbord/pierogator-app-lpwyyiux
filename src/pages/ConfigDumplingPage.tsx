@@ -7,7 +7,7 @@ import MainHeader, { Header } from "../components/MainHeader";
 import { useStore } from "../store";
 import useDumplingGenerator from "../utils/hooks/useDumplingsGenerator";
 export default function ConfigDumplingPage() {
-  const { generatedDumplingImage } = useStore();
+  const { generatedDumplingImage, isLoadingRecipe } = useStore();
   const navigate = useNavigate();
   const handleDumplingCreation = async () => {
     navigate("/recipe");
@@ -18,9 +18,16 @@ export default function ConfigDumplingPage() {
       <Header src={Logo} alt="logo" />
       <Container>
         <MainHeader />
-        <DumplingSection buttonText="generuj" buttonAction={generateDumpling} descriptionTitle="nazwa" />
+        {isLoadingRecipe && <p>ładuj</p>}
+        <DumplingSection
+          buttonText="generuj"
+          buttonAction={generateDumpling}
+          descriptionTitle="nazwa"
+        />
         {generatedDumplingImage && (
-          <CtaButton onClick={handleDumplingCreation}>Zapisz i przejdź do tworzenia przepisu</CtaButton>
+          <CtaButton onClick={handleDumplingCreation}>
+            Zapisz i przejdź do tworzenia przepisu
+          </CtaButton>
         )}
       </Container>
     </>

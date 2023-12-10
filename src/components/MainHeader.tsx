@@ -6,6 +6,7 @@ import { useStore } from "../store";
 import useAiGeneratedDumpling from "../utils/hooks/useAiGeneratedDumpling";
 import TextArea from "./RecipeSection/TextArea";
 import DumplingIcon from "./icons/DumplingIcon";
+import Loader from "./Loader";
 
 export const Container = styled.div`
   display: flex;
@@ -64,6 +65,10 @@ export const GenerateButton = styled.button`
   text-transform: capitalize;
   color: inherit;
 
+  &:focus {
+    cursor: pointer;
+  }
+
   &:hover {
     border: 1px solid var(--Gray, #d6d6d6);
     background: var(--Gray-light, #e8e8e8);
@@ -72,7 +77,6 @@ export const GenerateButton = styled.button`
 
 const CustomInputContainer = styled.div`
   display: flex;
-  width: 100%;
   align-items: flex-start;
   border: 1px solid var(--Gray-light, #e8e8e8);
   border-radius: 4px;
@@ -85,12 +89,15 @@ const CustomInputContainer = styled.div`
 const ButtonUnlockStyled = styled.img`
   padding: 0;
   border-radius: 0 4px 4px 0;
+
+  &:focus {
+    cursor: pointer;
+  }
 `;
 
 export const Label = styled.label`
   align-self: flex-start;
   font-size: 14px;
-  text-transform: capitalize;
   font-weight: 500;
   font-family: "Poppins";
   color: var(--dark-green, #002902);
@@ -99,7 +106,6 @@ export const Label = styled.label`
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   width: 100%;
   margin-top: 24px;
 `;
@@ -107,7 +113,11 @@ const InputContainer = styled.div`
 export const GenerateComponent = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+`;
+
+export const LogoBtnWrapper = styled.div`
+  display: flex;
+  gap: 10px;
 `;
 
 const MainHeader = () => {
@@ -127,7 +137,7 @@ const MainHeader = () => {
     setIngredientsLockView,
     ingredientsLockView,
     filling,
-    isLoading,
+    isLoadingDumplings,
   } = useStore();
 
   return (
@@ -138,9 +148,12 @@ const MainHeader = () => {
             <DumplingIcon />
             <Title>Składniki</Title>
           </TitleWrapper>
-          {isLoading && <p>Loading...</p>}
-
-          <GenerateButton onClick={generateGptResponse}>Generuj</GenerateButton>
+          <LogoBtnWrapper>
+            {isLoadingDumplings && <Loader />}
+            <GenerateButton onClick={generateGptResponse}>
+              Generuj
+            </GenerateButton>
+          </LogoBtnWrapper>
         </IngredientsComponent>
         <InputContainer>
           <Label htmlFor="customInput">Ciasto</Label>

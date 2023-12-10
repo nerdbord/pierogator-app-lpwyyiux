@@ -29,9 +29,16 @@ export default function DumplingRecipePage(props: DumplingRecipePageProps) {
     <>
       <Header src={Logo} alt="logo"></Header>
       <Container>
-        <DumplingSection buttonText="zmień" buttonAction={handleDumplingChangeRequest}></DumplingSection>
+        <DumplingSection
+          buttonText="zmień"
+          buttonAction={handleDumplingChangeRequest}
+        ></DumplingSection>
         <RecipeSection></RecipeSection>
-        {generatedDumplingImage && <CtaButton onClick={handleDumplingShare}>Udostępnij Pieroga</CtaButton>}
+        {generatedDumplingImage && (
+          <CtaButton onClick={handleDumplingShare}>
+            Udostępnij Pieroga
+          </CtaButton>
+        )}
       </Container>
     </>
   );

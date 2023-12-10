@@ -2,8 +2,16 @@ import styled from "styled-components";
 import { useStore } from "../store";
 
 import { device } from "../GlobalStyles";
-import { GenerateButton, GenerateComponent, IngredientsComponent, Label, Title, TitleWrapper } from "./MainHeader";
+import {
+  GenerateButton,
+  GenerateComponent,
+  IngredientsComponent,
+  Label,
+  Title,
+  TitleWrapper,
+} from "./MainHeader";
 import DumplingIcon from "./icons/DumplingIcon";
+import Loader from "./Loader";
 
 const CustomInputDumplingName = styled.input`
   color: var(--dark-green, #002902);
@@ -17,7 +25,7 @@ const CustomInputDumplingName = styled.input`
   border: 1px solid var(--gray-background, #f9f9f9);
   padding: 16px;
   background: var(--gray-background, #f9f9f9);
-  width: 100%;
+  //width: 100%;
 
   &:focus {
     border: 1px solid var(--gray-light, #e8e8e8);
@@ -29,6 +37,11 @@ const CustomInputDumplingName = styled.input`
       font-size: 1rem;
     }
   }
+`;
+
+export const LogoBtnWrapper = styled.div`
+  display: flex;
+  gap: 10px;
 `;
 
 const ImageDumpling = styled.img`
@@ -63,7 +76,12 @@ export type DumplingSectionProps = {
 };
 
 export default function DumplingSection(props: DumplingSectionProps) {
-  const { generatedDumplingImage, setDumplingName, dumplingName } = useStore();
+  const {
+    generatedDumplingImage,
+    setDumplingName,
+    dumplingName,
+    isLoadingImage,
+  } = useStore();
 
   const handleDumplingNameUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length <= 40) setDumplingName(e.target.value);
@@ -76,13 +94,27 @@ export default function DumplingSection(props: DumplingSectionProps) {
           <DumplingIcon />
           <Title>Pieróg</Title>
         </TitleWrapper>
-        <GenerateButton onClick={props.buttonAction}>{props.buttonText || "Generuj"}</GenerateButton>
+        <LogoBtnWrapper>
+          {isLoadingImage && <Loader />}
+
+          <GenerateButton onClick={props.buttonAction}>
+            {props.buttonText || "Generuj"}
+          </GenerateButton>
+        </LogoBtnWrapper>
       </IngredientsComponent>
       {generatedDumplingImage && (
         <GeneratedDumplingContent>
-          <ImageDumpling src={generatedDumplingImage} alt="Wygenerowany Pieróg" />
+          <ImageDumpling
+            src={generatedDumplingImage}
+            alt="Wygenerowany Pieróg"
+          />
           <DumplingNameSection>
-            {props.descriptionTitle && <Label>{props.descriptionTitle}</Label>}
+            {props.descriptionTitle && (
+              <Label>
+                {props.descriptionTitle.charAt(0).toUpperCase() +
+                  props.descriptionTitle.slice(1)}
+              </Label>
+            )}
             <CustomInputDumplingName
               required
               value={dumplingName}

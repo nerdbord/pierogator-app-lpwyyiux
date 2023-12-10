@@ -4,30 +4,47 @@ import generateRecipeIngredients from "./useRecipesHelpers/generateRecipeIngredi
 import generateRecipeInstructions from "./useRecipesHelpers/generateRecipeInstructions";
 
 const useRecipesGenerator = () => {
-  const { dumplingName, dumplingNotes, dough, filling, ingredients, generatedDumplingImage, setRecipe } = useStore();
+  const {
+    dumplingName,
+    dumplingNotes,
+    dough,
+    filling,
+    ingredients,
+    generatedDumplingImage,
+    setRecipe,
+    setIsLoadingRecipe,
+  } = useStore();
+  
   const generateDumplingRecipe = async () => {
-    // last one === uwagi
-    const recipeIngredients = await generateRecipeIngredients({
-      dough,
-      filling,
-      ingredients,
-      notes: dumplingNotes,
-    });
+    setIsLoadingRecipe(true);
+    try {
+      const recipeIngredients = await generateRecipeIngredients({
+        dough,
+        filling,
+        ingredients,
+        notes: dumplingNotes,
+      });
 
-    const recipeInstructions = await generateRecipeInstructions({
-      recipeIngredients,
-      dough,
-      filling,
-      notes: dumplingNotes,
-    });
-    const DumplingRecipeInstance = new DumplingRecipe(
-      dumplingName,
-      generatedDumplingImage,
-      JSON.parse(`${recipeIngredients}`),
-      JSON.parse(`${recipeInstructions}`).recipeInstructions
-    );
-    setRecipe(DumplingRecipeInstance);
-    return DumplingRecipeInstance;
+      const recipeInstructions = await generateRecipeInstructions({
+        recipeIngredients,
+        dough,
+        filling,
+        notes: dumplingNotes,
+      });
+
+      const DumplingRecipeInstance = new DumplingRecipe(
+        dumplingName,
+        generatedDumplingImage,
+        JSON.parse(`${recipeIngredients}`),
+        JSON.parse(`${recipeInstructions}`)
+      );
+      setRecipe(DumplingRecipeInstance);
+      return DumplingRecipeInstance;
+    } catch (error) {
+      console.error("Błąd podczas generowania przepisu:", error);
+    } finally {
+      setIsLoadingRecipe(false);
+    }
   };
 
   return generateDumplingRecipe;

@@ -2,14 +2,18 @@ import create from "zustand";
 import DumplingRecipe from "./utils/Classes/DumplingRecipe";
 
 interface StoreState {
-  isLoading: boolean;
+  isLoadingImage: boolean;
   dough: string;
   filling: string;
   fillingLockView: boolean;
   doughLockView: boolean;
   ingredients: string;
   ingredientsLockView: boolean;
-  setIsLoading: (isLoading: boolean) => void;
+  isLoadingDumplings: boolean;
+  isLoadingRecipe: boolean;
+  setIsLoadingRecipe: (isLoadingRecipe: boolean) => void;
+  setIsLoadingImage: (isLoadingImage: boolean) => void;
+  setIsLodingForDumplings: (isLoadingDumplings: boolean) => void;
   setIngredientsLockView: (ingredientsLockView: boolean) => void;
   setIngredients: (ingredients: string) => void;
   setFillingLockView: (fillingLockView: boolean) => void;
@@ -27,22 +31,29 @@ interface StoreState {
 }
 
 export const useStore = create<StoreState>((set) => ({
-  isLoading: false,
+  isLoadingImage: false,
   dough: "",
   doughLockView: false,
   filling: "",
   ingredients: "",
   ingredientsLockView: false,
   fillingLockView: false,
-  setIsLoading: (isLoading: boolean) => set({ isLoading }),
-  setIngredientsLockView: (ingredientsLockView: boolean) => set({ ingredientsLockView }),
+  isLoadingDumplings: false,
+  isLoadingRecipe: false,
+  setIsLoadingRecipe: (isLoadingRecipe: boolean) => set({ isLoadingRecipe }),
+  setIsLodingForDumplings: (isLoadingDumplings: boolean) =>
+    set({ isLoadingDumplings }),
+  setIsLoadingImage: (isLoadingImage: boolean) => set({ isLoadingImage }),
+  setIngredientsLockView: (ingredientsLockView: boolean) =>
+    set({ ingredientsLockView }),
   setIngredients: (ingredients: string) => set({ ingredients }),
   setFillingLockView: (fillingLockView: boolean) => set({ fillingLockView }),
   setFilling: (filling: string) => set({ filling }),
   setDoughLockView: (doughLockView: boolean) => set({ doughLockView }),
   setDough: (dough: string) => set({ dough }),
   generatedDumplingImage: "",
-  setGeneratedDumplingImage: (image: string) => set({ generatedDumplingImage: image }),
+  setGeneratedDumplingImage: (image: string) =>
+    set({ generatedDumplingImage: image }),
   dumplingName: "",
   setDumplingName: (dumplingName: string) => set({ dumplingName }),
   dumplingNotes: "",
