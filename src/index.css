@@ -54,6 +54,7 @@ body {
   font-size: var(--default-fs);
   line-height: var(--default-lh);
   letter-spacing: 0;
+  margin: 0;
 }
 
 button {

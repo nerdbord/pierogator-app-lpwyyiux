@@ -4,14 +4,6 @@ import GlobalStyle, { device } from "./GlobalStyles";
 import ConfigDumplingPage from "./pages/ConfigDumplingPage";
 import DumplingRecipePage from "./pages/DumplingRecipePage";
 
-// export const Container = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   width: 375px;
-//   height: auto;
-//   padding: 0.5rem;
-// `;
-
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -19,7 +11,6 @@ export const Container = styled.div`
   align-items:center
   width: 100%;
   height: auto;
-  //padding: 0.5rem;
 
   overflow-x: hidden;
 
