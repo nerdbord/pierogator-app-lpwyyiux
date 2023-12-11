@@ -163,7 +163,7 @@ const MainHeader = () => {
           <Label htmlFor="customInput">Ciasto</Label>
           <CustomInputContainer>
             <ButtonUnlockStyled
-              onClick={() => setDoughLockView(!doughLockView)}
+              onClick={() => !isLoadingDumplings && setDoughLockView(!doughLockView)}
               src={doughLockView ? ButtonLock : ButtonUnlock}
               alt="unlock"
             />
@@ -184,7 +184,7 @@ const MainHeader = () => {
           <Label htmlFor="customInput">Nadzienie</Label>
           <CustomInputContainer>
             <ButtonUnlockStyled
-              onClick={() => setFillingLockView(!fillingLockView)}
+              onClick={() => !isLoadingDumplings && setFillingLockView(!fillingLockView)}
               src={fillingLockView ? ButtonLock : ButtonUnlock}
               alt="unlock"
             />
@@ -205,7 +205,7 @@ const MainHeader = () => {
           <Label htmlFor="customInput">Składniki</Label>
           <CustomInputContainer>
             <ButtonUnlockStyled
-              onClick={() => setIngredientsLockView(!ingredientsLockView)}
+              onClick={() => !isLoadingDumplings && setIngredientsLockView(!ingredientsLockView)}
               src={ingredientsLockView ? ButtonLock : ButtonUnlock}
               alt="unlock"
             />
