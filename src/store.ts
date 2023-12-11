@@ -28,6 +28,8 @@ interface StoreState {
   setDumplingNotes: (dumplingNotes: string) => void;
   recipe: DumplingRecipe | null;
   setRecipe: (recipe: DumplingRecipe) => void;
+  previewedDumpling: DBRecipe | null;
+  setPreviewedDumpling: (previewedDumplingRecipe: DBRecipe) => void;
 }
 
 export const useStore = create<StoreState>((set) => ({
@@ -41,23 +43,26 @@ export const useStore = create<StoreState>((set) => ({
   isLoadingDumplings: false,
   isLoadingRecipe: false,
   setIsLoadingRecipe: (isLoadingRecipe: boolean) => set({ isLoadingRecipe }),
-  setIsLodingForDumplings: (isLoadingDumplings: boolean) =>
-    set({ isLoadingDumplings }),
+  setIsLodingForDumplings: (isLoadingDumplings: boolean) => set({ isLoadingDumplings }),
   setIsLoadingImage: (isLoadingImage: boolean) => set({ isLoadingImage }),
-  setIngredientsLockView: (ingredientsLockView: boolean) =>
-    set({ ingredientsLockView }),
+  setIngredientsLockView: (ingredientsLockView: boolean) => set({ ingredientsLockView }),
   setIngredients: (ingredients: string) => set({ ingredients }),
   setFillingLockView: (fillingLockView: boolean) => set({ fillingLockView }),
   setFilling: (filling: string) => set({ filling }),
   setDoughLockView: (doughLockView: boolean) => set({ doughLockView }),
   setDough: (dough: string) => set({ dough }),
   generatedDumplingImage: "",
-  setGeneratedDumplingImage: (image: string) =>
-    set({ generatedDumplingImage: image }),
+  setGeneratedDumplingImage: (image: string) => set({ generatedDumplingImage: image }),
   dumplingName: "",
   setDumplingName: (dumplingName: string) => set({ dumplingName }),
   dumplingNotes: "",
   setDumplingNotes: (dumplingNotes: string) => set({ dumplingNotes }),
   recipe: null,
   setRecipe: (recipe: DumplingRecipe) => set({ recipe }),
+  previewedDumpling: null,
+  setPreviewedDumpling: (previewedDumpling: DBRecipe) => set({ previewedDumpling }),
 }));
+
+type DBRecipe = DumplingRecipe & {
+  _id: number;
+};

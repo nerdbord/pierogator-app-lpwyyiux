@@ -6,7 +6,7 @@ import Loader from "./Loader";
 import { GenerateButton, GenerateComponent, IngredientsComponent, Label, Title, TitleWrapper } from "./MainHeader";
 import DumplingIcon from "./icons/DumplingIcon";
 
-const CustomInputDumplingName = styled.input`
+export const CustomInputDumplingName = styled.input`
   color: var(--dark-green, #002902);
 
   font-family: "Poppins";
@@ -37,22 +37,22 @@ export const LogoBtnWrapper = styled.div`
   gap: 10px;
 `;
 
-const ImageDumpling = styled.img`
+export const ImageDumpling = styled.img`
   width: 100%;
-  height: calc((100dvw - 32px) / 16 * 9);
+  height: calc((100dvw - 32px) * 0.679);
 
   object-fit: cover;
   object-position: 50% 50%;
 `;
 
-const DumplingSectionWrapper = styled.div`
+export const DumplingSectionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
 `;
 
-const GeneratedDumplingContent = styled(GenerateComponent)`
+export const GeneratedDumplingContent = styled(GenerateComponent)`
   gap: 16px;
 `;
 

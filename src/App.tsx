@@ -3,6 +3,7 @@ import styled from "styled-components";
 import GlobalStyle, { device } from "./GlobalStyles";
 import ConfigDumplingPage from "./pages/ConfigDumplingPage";
 import GalleryPage from "./pages/GalleryPage";
+import PreviewDumplingPage from "./pages/PreviewDumplingPage";
 import DumplingRecipePage from "./pages/RecipePage";
 
 export const Container = styled.div`
@@ -30,6 +31,7 @@ function App() {
         <Route path="/" element={<ConfigDumplingPage />} />
         <Route path="/recipe" element={<DumplingRecipePage configPath="/" proceedPath="/gallery" />} />
         <Route path="/gallery" element={<GalleryPage dumplingPath="/" />}></Route>
+        <Route path="/dumpling_preview/:id" element={<PreviewDumplingPage />} />
       </Routes>
     </Router>
   );

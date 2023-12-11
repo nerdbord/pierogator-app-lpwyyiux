@@ -75,7 +75,7 @@ export default function RecipeSection() {
   );
 }
 
-const AcordeonsContainer = styled.div`
+export const AcordeonsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
