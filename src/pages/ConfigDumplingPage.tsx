@@ -27,7 +27,7 @@ export default function ConfigDumplingPage() {
   const generateDumplingData = async () => {
     if (dough === "" || filling === "" || ingredients === "") {
       setIncompleteFieldsError(
-        `Proszę wypełnij pola: ${dough === "" && "Ciasto"} ${filling === "" && "Farsz"} ${
+        `Proszę wypełnij pola: ${dough === "" && "Ciasto"} ${filling === "" && "Nadzienie"} ${
           ingredients === "" && "Składniki"
         } przed generacją obrazu tych pierogów`
       );
