@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, MobileSimulator } from "../App";
 import Logo from "../assets/Header.svg";
@@ -17,6 +18,10 @@ export default function DumplingRecipePage(props: DumplingRecipePageProps) {
   const {
     generatedDumplingImage,
     recipe,
+    filling,
+    dough,
+    ingredients,
+    dumplingName,
     setIsLoadingRecipe,
     setIngredients,
     setFilling,
@@ -52,13 +57,25 @@ export default function DumplingRecipePage(props: DumplingRecipePageProps) {
     setIsLoadingRecipe(false);
     navigate(props.configPath);
   };
+
+  useEffect(() => {
+    if (filling === "" || dough === "" || ingredients === "" || generatedDumplingImage === "") {
+      navigate("/");
+    }
+  }, []);
   return (
     <MobileSimulator>
       <Header src={Logo} alt="logo"></Header>
       <Container>
-        <DumplingSection buttonText="zmień" buttonAction={handleDumplingChangeRequest}></DumplingSection>
+        <DumplingSection
+          buttonText="zmień"
+          buttonAction={handleDumplingChangeRequest}
+          changeRecipe={true}
+        ></DumplingSection>
         <RecipeSection></RecipeSection>
-        {generatedDumplingImage && recipe && <CtaButton onClick={handleDumplingShare}>Udostępnij Pieroga</CtaButton>}
+        {generatedDumplingImage && recipe && dumplingName && (
+          <CtaButton onClick={handleDumplingShare}>Udostępnij Pieroga</CtaButton>
+        )}
       </Container>
     </MobileSimulator>
   );

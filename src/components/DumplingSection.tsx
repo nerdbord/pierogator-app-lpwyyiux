@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useStore } from "../store";
 
 import { device } from "../GlobalStyles";
+import DumplingRecipe from "../utils/Classes/DumplingRecipe";
 import Loader from "./Loader";
 import { GenerateButton, GenerateComponent, IngredientsComponent, Label, Title, TitleWrapper } from "./MainHeader";
 import DumplingIcon from "./icons/DumplingIcon";
@@ -71,13 +72,27 @@ export type DumplingSectionProps = {
   buttonAction: () => void;
   buttonText?: string;
   descriptionTitle?: string;
+  changeRecipe?: boolean;
 };
 
 export default function DumplingSection(props: DumplingSectionProps) {
-  const { generatedDumplingImage, setDumplingName, dumplingName, isLoadingImage, incompleteFieldsError } = useStore();
+  const {
+    generatedDumplingImage,
+    setDumplingName,
+    dumplingName,
+    isLoadingImage,
+    incompleteFieldsError,
+    setRecipe,
+    recipe,
+  } = useStore();
 
   const handleDumplingNameUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length <= 40) setDumplingName(e.target.value);
+    if (e.target.value.length <= 40) {
+      setDumplingName(e.target.value);
+      if (props.changeRecipe && recipe) {
+        setRecipe(new DumplingRecipe(dumplingName, recipe.imageSrc, recipe.ingredients, recipe.instructions));
+      }
+    }
   };
 
   return (
@@ -107,6 +122,7 @@ export default function DumplingSection(props: DumplingSectionProps) {
               id="customInput"
               type="text"
               placeholder="Nazwa pieroga"
+              maxLength={40}
             />
           </DumplingNameSection>
         </GeneratedDumplingContent>
