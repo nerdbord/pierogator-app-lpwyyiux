@@ -32,6 +32,10 @@ export const CustomInputDumplingName = styled.input`
   }
 `;
 
+export const IncompleteFieldsError = styled.h3`
+  color: red;
+`;
+
 export const LogoBtnWrapper = styled.div`
   display: flex;
   gap: 10px;
@@ -70,7 +74,7 @@ export type DumplingSectionProps = {
 };
 
 export default function DumplingSection(props: DumplingSectionProps) {
-  const { generatedDumplingImage, setDumplingName, dumplingName, isLoadingImage } = useStore();
+  const { generatedDumplingImage, setDumplingName, dumplingName, isLoadingImage, incompleteFieldsError } = useStore();
 
   const handleDumplingNameUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length <= 40) setDumplingName(e.target.value);
@@ -85,10 +89,10 @@ export default function DumplingSection(props: DumplingSectionProps) {
         </TitleWrapper>
         <LogoBtnWrapper>
           {isLoadingImage && <Loader />}
-
           <GenerateButton onClick={props.buttonAction}>{props.buttonText || "Generuj"}</GenerateButton>
         </LogoBtnWrapper>
       </IngredientsComponent>
+      {incompleteFieldsError && <IncompleteFieldsError>{incompleteFieldsError}</IncompleteFieldsError>}
       {generatedDumplingImage && (
         <GeneratedDumplingContent>
           <ImageDumpling src={generatedDumplingImage} alt="Wygenerowany Pieróg" />

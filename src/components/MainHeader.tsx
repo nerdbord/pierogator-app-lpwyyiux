@@ -144,6 +144,7 @@ const MainHeader = () => {
     setFillingChanged,
     ingredientsChanged,
     setIngredientsChanged,
+    setIncompleteFieldsError,
   } = useStore();
 
   return (
@@ -156,7 +157,14 @@ const MainHeader = () => {
           </TitleWrapper>
           <LogoBtnWrapper>
             {isLoadingDumplings && <Loader />}
-            <GenerateButton onClick={generateGptResponse}>Generuj</GenerateButton>
+            <GenerateButton
+              onClick={() => {
+                generateGptResponse();
+                setIncompleteFieldsError("");
+              }}
+            >
+              Generuj
+            </GenerateButton>
           </LogoBtnWrapper>
         </IngredientsComponent>
         <InputContainer>
