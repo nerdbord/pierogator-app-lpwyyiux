@@ -74,6 +74,8 @@ const useRecipesGenerator = () => {
       }
     } catch (error) {
       console.error("Błąd podczas generowania przepisu:", error);
+      console.log("Ponowna próba");
+      await generateDumplingRecipe();
     } finally {
       setIsLoadingRecipe(false);
     }

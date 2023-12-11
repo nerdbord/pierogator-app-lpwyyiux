@@ -25,6 +25,9 @@ export default function DumplingRecipePage(props: DumplingRecipePageProps) {
     setDumplingName,
     setDumplingNotes,
     setRecipe,
+    setDoughLockView,
+    setFillingLockView,
+    setIngredientsLockView,
   } = useStore();
   const navigate = useNavigate();
   const shareDumpling = useShareDumpling();
@@ -40,6 +43,9 @@ export default function DumplingRecipePage(props: DumplingRecipePageProps) {
     setDumplingNotes("");
     setRecipe(null);
     setIsLoadingRecipe(false);
+    setDoughLockView(false);
+    setFillingLockView(false);
+    setIngredientsLockView(false);
     navigate(props.proceedPath);
   };
   const handleDumplingChangeRequest = () => {
