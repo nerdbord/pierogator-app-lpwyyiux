@@ -14,7 +14,7 @@ const useRecipesGenerator = () => {
     setRecipe,
     setIsLoadingRecipe,
   } = useStore();
-  
+
   const generateDumplingRecipe = async () => {
     setIsLoadingRecipe(true);
     try {
@@ -36,7 +36,7 @@ const useRecipesGenerator = () => {
         dumplingName,
         generatedDumplingImage,
         JSON.parse(`${recipeIngredients}`),
-        JSON.parse(`${recipeInstructions}`)
+        JSON.parse(`${recipeInstructions}`).recipeInstructions
       );
       setRecipe(DumplingRecipeInstance);
       return DumplingRecipeInstance;

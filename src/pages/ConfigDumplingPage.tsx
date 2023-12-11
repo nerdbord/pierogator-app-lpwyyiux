@@ -5,6 +5,7 @@ import { CtaButton } from "../components/CtaButton";
 import DumplingSection from "../components/DumplingSection";
 import MainHeader, { Header } from "../components/MainHeader";
 import { useStore } from "../store";
+import useDumplingNameGenerator from "../utils/hooks/useDumplingNameGenerator";
 import useDumplingGenerator from "../utils/hooks/useDumplingsGenerator";
 export default function ConfigDumplingPage() {
   const { generatedDumplingImage, isLoadingRecipe } = useStore();
@@ -13,21 +14,20 @@ export default function ConfigDumplingPage() {
     navigate("/recipe");
   };
   const generateDumpling = useDumplingGenerator();
+  const generateDumplingName = useDumplingNameGenerator();
+  const generateDumplingData = () => {
+    generateDumpling();
+    generateDumplingName();
+  };
   return (
     <>
       <Header src={Logo} alt="logo" />
       <Container>
         <MainHeader />
         {isLoadingRecipe && <p>ładuj</p>}
-        <DumplingSection
-          buttonText="generuj"
-          buttonAction={generateDumpling}
-          descriptionTitle="nazwa"
-        />
+        <DumplingSection buttonText="generuj" buttonAction={generateDumplingData} descriptionTitle="nazwa" />
         {generatedDumplingImage && (
-          <CtaButton onClick={handleDumplingCreation}>
-            Zapisz i przejdź do tworzenia przepisu
-          </CtaButton>
+          <CtaButton onClick={handleDumplingCreation}>Zapisz i przejdź do tworzenia przepisu</CtaButton>
         )}
       </Container>
     </>

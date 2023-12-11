@@ -53,18 +53,21 @@ export type RecipeAcordeonProps =
   | {
       description: "Podawanie";
       data: string[];
+      opened?: boolean;
     }
   | {
       description: "Przygotowanie";
       data: Omit<Instructions, "serving">;
+      opened?: boolean;
     }
   | {
       description: "Składniki";
       data: ingredients;
+      opened?: boolean;
     };
 
 export default function RecipeAcordeon(props: RecipeAcordeonProps) {
-  const [isAcordeonOn, setIsAcordeonOn] = useState(false);
+  const [isAcordeonOn, setIsAcordeonOn] = useState(props.opened || false);
   const toggleAcordeonState = () => {
     setIsAcordeonOn((prev) => !prev);
   };
@@ -111,7 +114,7 @@ export default function RecipeAcordeon(props: RecipeAcordeonProps) {
     <RecipeAcordeonWrapper>
       <AccordeonButton onClick={toggleAcordeonState}>
         {props.description}
-        <ButtonArrow src={Arrow} style={{ transform: `rotate(${isAcordeonOn ? "180deg" : "0"})` }}></ButtonArrow>
+        <ButtonArrow src={Arrow} style={{ transform: `rotate(${isAcordeonOn ? "0deg" : "180deg"})` }}></ButtonArrow>
       </AccordeonButton>
       {isAcordeonOn && <RecipeInstructionsWrapper>{...data}</RecipeInstructionsWrapper>}
     </RecipeAcordeonWrapper>

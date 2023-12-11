@@ -42,12 +42,14 @@ export default function Tile(props: TileProps) {
     const deleteDumpling = useDelUserDumpling(props.data._id);
     await deleteDumpling();
   };
+
   useEffect(() => {
     if (imageRef.current !== null) {
-      const newHeight = (imageRef.current.width / 16) * 9;
+      const newHeight = Math.round(imageRef.current.width * 0.679012345679);
       setImageHeight(`${newHeight}px`);
     }
   }, []);
+
   return (
     <DumplingTile onClick={handleTileClick}>
       <MiniImage
