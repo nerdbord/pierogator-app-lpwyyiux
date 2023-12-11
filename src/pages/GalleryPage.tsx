@@ -7,6 +7,7 @@ import { GenerateButton, Header, Title, TitleWrapper } from "../components/MainH
 import Tile from "../components/Tile";
 import DumplingIcon from "../components/icons/DumplingIcon";
 import DumplingRecipe from "../utils/Classes/DumplingRecipe";
+import useDelUserDumpling from "../utils/hooks/useDelUserDumpling";
 import useGetAllDumplings from "../utils/hooks/useGetAllDumplings";
 import useGetUserDumplings from "../utils/hooks/useGetUserDumplings";
 
@@ -40,13 +41,31 @@ export default function GalleryPage(props: GalleryPageProps) {
     setUserDumplingsData(await getUserDumplings());
     setAllDumplingsData(await getAllDumplings());
   };
+
   useEffect(() => {
     prepareGallery();
   }, []);
+
+  const handleDelete = async (id: number) => {
+    const userDumplingsDataBackup = userDumplingsData;
+    setUserDumplingsData((prev) => {
+      if (prev !== null) {
+        return prev?.filter((DumplingData) => DumplingData._id !== id);
+      } else {
+        return prev;
+      }
+    });
+    const deleteDumpling = useDelUserDumpling(id);
+    try {
+      await deleteDumpling();
+    } catch (e) {
+      setUserDumplingsData(userDumplingsDataBackup);
+    }
+  };
   const userDumplingsTiles = useMemo(() => {
     if (userDumplingsData !== null) {
       return userDumplingsData.map((recipe) => {
-        return <Tile data={recipe} editable={true}></Tile>;
+        return <Tile data={recipe} editable={true} onDelete={handleDelete}></Tile>;
       });
     } else {
       return [];

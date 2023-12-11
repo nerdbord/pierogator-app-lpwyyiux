@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { DumplingData } from "../pages/GalleryPage";
-import useDelUserDumpling from "../utils/hooks/useDelUserDumpling";
 import { GenerateButton } from "./MainHeader";
 
 const DumplingTile = styled.div`
@@ -24,6 +23,7 @@ const TileInterface = styled.div`
 export type TileProps = {
   data: DumplingData;
   editable: boolean;
+  onDelete?: (id: number) => void;
 };
 
 export default function Tile(props: TileProps) {
@@ -38,10 +38,10 @@ export default function Tile(props: TileProps) {
   const handleOpenClick = () => {
     navigate(`/dumpling_preview/${props.data._id}`);
   };
-  const handleDumplingDelete = async () => {
-    const deleteDumpling = useDelUserDumpling(props.data._id);
-    await deleteDumpling();
-  };
+  // const handleDumplingDelete = async () => {
+  //   const deleteDumpling = useDelUserDumpling(props.data._id);
+  //   await deleteDumpling();
+  // };
 
   useEffect(() => {
     if (imageRef.current !== null) {
@@ -63,7 +63,7 @@ export default function Tile(props: TileProps) {
       {props.editable && (
         <TileInterface>
           <GenerateButton onClick={handleOpenClick}>Otwórz</GenerateButton>
-          <GenerateButton onClick={handleDumplingDelete}>Usuń</GenerateButton>
+          <GenerateButton onClick={() => props.onDelete && props.onDelete(props.data._id)}>Usuń</GenerateButton>
         </TileInterface>
       )}
     </DumplingTile>
