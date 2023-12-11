@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { Container, MobileSimulator } from "../App";
-import Logo from "../assets/Header.svg";
+import Logo from "../assets/Header2.svg";
 import { GenerateButton, Header, Title, TitleWrapper } from "../components/MainHeader";
 import Tile from "../components/Tile";
 import DumplingIcon from "../components/icons/DumplingIcon";

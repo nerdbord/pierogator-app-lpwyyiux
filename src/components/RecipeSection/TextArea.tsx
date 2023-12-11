@@ -15,7 +15,7 @@ export const CustomTextarea = styled.textarea`
   margin: 0px;
 
   background: var(--gray-background, #f9f9f9);
-  //width: 100%;
+  width: 90%;
   resize: none;
   overflow: hidden;
 
@@ -96,6 +96,8 @@ export default function TextArea(props: TextAreaProps) {
       placeholder={props.placeholder}
       disabled={props.disabled}
       value={props.value}
+      onFocus={handleInputChange}
+      onBlur={handleInputChange}
       onChange={handleInputChange}
       style={{
         padding: `${props.padding}`,

@@ -59,7 +59,6 @@ const useAiGeneratedDumpling = () => {
       });
 
       const chatResponse = JSON.parse(`${response.data.choices[0].message.content}`);
-      console.log(chatResponse);
 
       if (!doughLockView) {
         setDough(chatResponse.ciasto);

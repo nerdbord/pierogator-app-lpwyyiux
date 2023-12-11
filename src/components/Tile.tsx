@@ -59,7 +59,7 @@ export default function Tile(props: TileProps) {
           height: `${imageHeight}`,
         }}
       ></MiniImage>
-      <h3>{props.data.name}</h3>
+      <h3>{props.data.name.length > 40 ? props.data.name : props.data.name.slice(0, 40)}</h3>
       {props.editable && (
         <TileInterface>
           <GenerateButton onClick={handleOpenClick}>Otwórz</GenerateButton>

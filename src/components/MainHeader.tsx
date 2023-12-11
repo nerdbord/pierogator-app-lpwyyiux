@@ -71,17 +71,17 @@ export const GenerateButton = styled.button`
 
   &:hover {
     border: 1px solid var(--Gray, #d6d6d6);
-    background: var(--Gray-light, #e8e8e8);
+    background: var(--gray-light, #e8e8e8);
   }
 `;
 
 const CustomInputContainer = styled.div`
   display: flex;
   align-items: flex-start;
-  border: 1px solid var(--Gray-light, #e8e8e8);
+  border: 1px solid var(--gray-light, #e8e8e8);
   border-radius: 4px;
   padding: 16px;
-  background: var(--Gray-background, #f9f9f9);
+  background: var(--gray-background, #f9f9f9);
   margin-top: 7px;
   gap: 12px;
 `;
@@ -161,7 +161,13 @@ const MainHeader = () => {
         </IngredientsComponent>
         <InputContainer>
           <Label htmlFor="customInput">Ciasto</Label>
-          <CustomInputContainer>
+          <CustomInputContainer
+            style={{
+              border: `${
+                doughLockView ? "1px solid var(--gray-background, #f9f9f9)" : "1px solid var(--gray-light, #e8e8e8)"
+              }`,
+            }}
+          >
             <ButtonUnlockStyled
               onClick={() => !isLoadingDumplings && setDoughLockView(!doughLockView)}
               src={doughLockView ? ButtonLock : ButtonUnlock}
@@ -182,7 +188,13 @@ const MainHeader = () => {
         </InputContainer>
         <InputContainer>
           <Label htmlFor="customInput">Nadzienie</Label>
-          <CustomInputContainer>
+          <CustomInputContainer
+            style={{
+              border: `${
+                fillingLockView ? "1px solid var(--gray-background, #f9f9f9)" : "1px solid var(--gray-light, #e8e8e8)"
+              }`,
+            }}
+          >
             <ButtonUnlockStyled
               onClick={() => !isLoadingDumplings && setFillingLockView(!fillingLockView)}
               src={fillingLockView ? ButtonLock : ButtonUnlock}
@@ -203,7 +215,15 @@ const MainHeader = () => {
         </InputContainer>
         <InputContainer>
           <Label htmlFor="customInput">Składniki</Label>
-          <CustomInputContainer>
+          <CustomInputContainer
+            style={{
+              border: `${
+                ingredientsLockView
+                  ? "1px solid var(--gray-background, #f9f9f9)"
+                  : "1px solid var(--gray-light, #e8e8e8)"
+              }`,
+            }}
+          >
             <ButtonUnlockStyled
               onClick={() => !isLoadingDumplings && setIngredientsLockView(!ingredientsLockView)}
               src={ingredientsLockView ? ButtonLock : ButtonUnlock}

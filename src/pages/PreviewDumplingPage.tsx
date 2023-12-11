@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import styled from "styled-components";
 import { Container, MobileSimulator } from "../App";
-import Logo from "../assets/Header.svg";
+import Logo from "../assets/Header2.svg";
 import {
   CustomInputDumplingName,
   DumplingNameSection,
