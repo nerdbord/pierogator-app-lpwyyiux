@@ -2,13 +2,7 @@ import axios from "axios";
 import { useStore } from "../../store";
 
 const useDumplingGenerator = () => {
-  const {
-    dough,
-    filling,
-    ingredients,
-    setGeneratedDumplingImage,
-    setIsLoadingImage,
-  } = useStore();
+  const { dough, filling, ingredients, setGeneratedDumplingImage, setIsLoadingImage, isLoadingImage } = useStore();
 
   const generateDumplingImage = async () => {
     setIsLoadingImage(true);

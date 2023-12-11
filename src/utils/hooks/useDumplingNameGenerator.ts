@@ -9,7 +9,7 @@ export default function useDumplingNameGenerator() {
       messages: [
         {
           role: "system",
-          content: `Stwórz artystyczną nazwę dla pierogów inspirując się podanymi przez użytkownika opisami ciasta, farszu i składników, zwróć tylko stworzoną nazwę`,
+          content: `Stwórz artystyczną nazwę dla pierogów inspirując się podanymi przez użytkownika opisami ciasta, farszu i składników, zwróć tylko stworzoną nazwę, bez placeholderów i elippsis`,
         },
         {
           role: "user",

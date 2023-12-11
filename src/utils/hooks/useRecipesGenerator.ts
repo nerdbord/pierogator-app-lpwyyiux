@@ -13,6 +13,7 @@ const useRecipesGenerator = () => {
     generatedDumplingImage,
     setRecipe,
     setIsLoadingRecipe,
+    isLoadingRecipe,
   } = useStore();
 
   const generateDumplingRecipe = async () => {
@@ -67,7 +68,8 @@ const useRecipesGenerator = () => {
           JSON.parse(`${recipeIngredients}`),
           Object.hasOwn(ri, "recipeInstructions") ? ri.recipeInstructions : ri
         );
-        setRecipe(DumplingRecipeInstance);
+        // if it didn't got interrupted by e.g. changing page
+        if (isLoadingRecipe) setRecipe(DumplingRecipeInstance);
         return DumplingRecipeInstance;
       }
     } catch (error) {
