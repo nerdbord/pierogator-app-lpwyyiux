@@ -3,6 +3,9 @@ import { useStore } from "../../store";
 
 const useAiGeneratedDumpling = () => {
   const {
+    dough,
+    filling,
+    ingredients,
     setDough,
     setFilling,
     setIngredients,
@@ -28,8 +31,21 @@ const useAiGeneratedDumpling = () => {
         },
         {
           role: "user",
-          content:
-            "Podaj mi losową propozycję ciasta (opisane przymiotnikami, np. elastyczne ciasto, francuskie), nadzienia (np. 'z...', inspiruj się typowymi farszami pierogów), i skladnikow jakie mógłbym wykorzystać do zrobienia pierogów. Zwróć tylko obiekt",
+          content: `Podaj mi losową propozycję ${
+            !doughLockView && "ciasta (opisane przymiotnikami, np. elastyczne ciasto, francuskie), "
+          } ${
+            !fillingLockView &&
+            `nadzienia do pierogów (np. 'z...', ${
+              ingredientsLockView
+                ? "inspiruj się typowymi farszami pierogów z składnikami wymienionymi przeze mnie"
+                : "inspiruj się typowymi farszami pierogów"
+            }), `
+          } ${doughLockView && `ciasto jakiego chciałbym użyć to : ${dough}`} ${
+            fillingLockView && `nadzienie jakie chciałbym użyć to ${filling}`
+          } ${ingredientsLockView && `składniki które chciałbym użyć to: ${ingredients}`}${
+            !ingredientsLockView &&
+            "skladników jakie mógłbym wykorzystać do zrobienia tych pierogów (jeśli ci podałem jaki chcę farsz i ciasto uwzględnij to w propozycji), wylistuj mi propozycje."
+          }. Zwróć tylko obiekt.`,
         },
       ],
     };
