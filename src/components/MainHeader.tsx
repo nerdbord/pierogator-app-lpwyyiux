@@ -75,7 +75,7 @@ export const GenerateButton = styled.button`
   }
 `;
 
-const CustomInputContainer = styled.div`
+const CustomInputContainer = styled.label`
   display: flex;
   align-items: flex-start;
   border: 1px solid var(--gray-light, #e8e8e8);

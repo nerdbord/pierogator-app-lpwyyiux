@@ -14,15 +14,36 @@ export type DumplingRecipePageProps = {
 };
 
 export default function DumplingRecipePage(props: DumplingRecipePageProps) {
-  const { generatedDumplingImage } = useStore();
+  const {
+    generatedDumplingImage,
+    recipe,
+    setIsLoadingRecipe,
+    setIngredients,
+    setFilling,
+    setDough,
+    setGeneratedDumplingImage,
+    setDumplingName,
+    setDumplingNotes,
+    setRecipe,
+  } = useStore();
   const navigate = useNavigate();
   const shareDumpling = useShareDumpling();
   const handleDumplingShare = async () => {
     // tutaj wsadzasz potem funkcję z kolejnego taska
     await shareDumpling();
+    // clear dumpling data
+    setIngredients("");
+    setFilling("");
+    setDough("");
+    setGeneratedDumplingImage("");
+    setDumplingName("");
+    setDumplingNotes("");
+    setRecipe(null);
+    setIsLoadingRecipe(false);
     navigate(props.proceedPath);
   };
   const handleDumplingChangeRequest = () => {
+    setIsLoadingRecipe(false);
     navigate(props.configPath);
   };
   return (
@@ -31,7 +52,7 @@ export default function DumplingRecipePage(props: DumplingRecipePageProps) {
       <Container>
         <DumplingSection buttonText="zmień" buttonAction={handleDumplingChangeRequest}></DumplingSection>
         <RecipeSection></RecipeSection>
-        {generatedDumplingImage && <CtaButton onClick={handleDumplingShare}>Udostępnij Pieroga</CtaButton>}
+        {generatedDumplingImage && recipe && <CtaButton onClick={handleDumplingShare}>Udostępnij Pieroga</CtaButton>}
       </Container>
     </MobileSimulator>
   );
