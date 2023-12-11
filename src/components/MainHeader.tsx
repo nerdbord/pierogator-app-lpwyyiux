@@ -183,7 +183,7 @@ const MainHeader = () => {
             />
             <TextArea
               value={dough}
-              disabled={doughLockView}
+              disabled={doughLockView || isLoadingDumplings}
               setValue={setDough}
               configValChanged={doughChanged}
               setConfigValChanged={setDoughChanged}
@@ -210,7 +210,7 @@ const MainHeader = () => {
             />
             <TextArea
               value={filling}
-              disabled={fillingLockView}
+              disabled={fillingLockView || isLoadingDumplings}
               setValue={setFilling}
               configValChanged={fillingChanged}
               setConfigValChanged={setFillingChanged}
@@ -239,7 +239,7 @@ const MainHeader = () => {
             />
             <TextArea
               value={ingredients}
-              disabled={ingredientsLockView}
+              disabled={ingredientsLockView || isLoadingDumplings}
               setValue={setIngredients}
               configValChanged={ingredientsChanged}
               setConfigValChanged={setIngredientsChanged}
