@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
-import { Container } from "../App";
+import { Container, MobileSimulator } from "../App";
 import Logo from "../assets/Header.svg";
 import { GenerateButton, Header, Title, TitleWrapper } from "../components/MainHeader";
 import Tile from "../components/Tile";
@@ -67,7 +67,7 @@ export default function GalleryPage(props: GalleryPageProps) {
     navigate(`${props.dumplingPath}`);
   };
   return (
-    <>
+    <MobileSimulator>
       <Header src={Logo} alt="logo"></Header>
       <Container>
         <ContentContainer>
@@ -90,7 +90,7 @@ export default function GalleryPage(props: GalleryPageProps) {
           <Gallery>{...allDumplingsTiles}</Gallery>
         </ContentContainer>
       </Container>
-    </>
+    </MobileSimulator>
   );
 }
 

@@ -11,6 +11,12 @@ interface StoreState {
   ingredientsLockView: boolean;
   isLoadingDumplings: boolean;
   isLoadingRecipe: boolean;
+  fillingChanged: boolean;
+  setFillingChanged: (fillingChanged: boolean) => void;
+  doughChanged: boolean;
+  setDoughChanged: (doughChanged: boolean) => void;
+  ingredientsChanged: boolean;
+  setIngredientsChanged: (ingredientsChanged: boolean) => void;
   setIsLoadingRecipe: (isLoadingRecipe: boolean) => void;
   setIsLoadingImage: (isLoadingImage: boolean) => void;
   setIsLodingForDumplings: (isLoadingDumplings: boolean) => void;
@@ -42,6 +48,12 @@ export const useStore = create<StoreState>((set) => ({
   fillingLockView: false,
   isLoadingDumplings: false,
   isLoadingRecipe: false,
+  fillingChanged: false,
+  setFillingChanged: (fillingChanged: boolean) => set({ fillingChanged }),
+  doughChanged: false,
+  setDoughChanged: (doughChanged: boolean) => set({ doughChanged }),
+  ingredientsChanged: false,
+  setIngredientsChanged: (ingredientsChanged: boolean) => set({ ingredientsChanged }),
   setIsLoadingRecipe: (isLoadingRecipe: boolean) => set({ isLoadingRecipe }),
   setIsLodingForDumplings: (isLoadingDumplings: boolean) => set({ isLoadingDumplings }),
   setIsLoadingImage: (isLoadingImage: boolean) => set({ isLoadingImage }),

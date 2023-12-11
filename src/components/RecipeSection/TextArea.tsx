@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { device } from "../../GlobalStyles";
 
@@ -38,6 +38,8 @@ export interface TextAreaProps {
   padding: string;
   border: string;
   rowsOnStart?: number;
+  configValChanged?: boolean;
+  setConfigValChanged?: (arg: boolean) => void;
 }
 
 export default function TextArea(props: TextAreaProps) {
@@ -60,6 +62,32 @@ export default function TextArea(props: TextAreaProps) {
     textarea.style.height = `${textarea.scrollHeight}px`;
     textarea.style.padding = `${props.padding}`;
   };
+
+  const handleOutsideInputChange = (value: string) => {
+    const textarea = textareaRef.current;
+    if (textarea !== null) {
+      textarea.style.height = "fit-content"; // Reset values for recalculations
+      textarea.style.padding = "0";
+      props.setValue(value);
+      if (value === "") {
+        setRows(props.rowsOnStart || 1);
+        textarea.rows = props.rowsOnStart || 1;
+      } else if (rows !== 1) {
+        setRows(1);
+        // for scrollheight browser computations
+        textarea.rows = 1;
+      }
+      textarea.style.height = `${textarea.scrollHeight}px`;
+      textarea.style.padding = `${props.padding}`;
+    }
+  };
+  // handleOutsideInputChange(value);
+  useEffect(() => {
+    if (props.configValChanged) {
+      handleOutsideInputChange(props.value);
+      if (props.setConfigValChanged) props.setConfigValChanged(false);
+    }
+  }, [props.value, props?.configValChanged]);
 
   return (
     <CustomTextarea

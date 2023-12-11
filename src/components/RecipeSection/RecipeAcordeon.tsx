@@ -85,10 +85,12 @@ export default function RecipeAcordeon(props: RecipeAcordeonProps) {
           // @ts-ignore
           elements.push(<RecipeTitle>{dictionary[`${key}`]}</RecipeTitle>);
           if (props.description === "Przygotowanie") {
+            const digitRegex = /^\d+$/;
             elements.push(
               ...value.map((step: string, index: number) => (
                 <RecipeListItem>
-                  {index + 1}. {step}
+                  {digitRegex.test(step[0]) ? "" : `${index + 1}. `}
+                  {step}
                 </RecipeListItem>
               ))
             );

@@ -23,6 +23,16 @@ export const Container = styled.div`
   }
 `;
 
+export const MobileSimulator = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  min-height: 100dvh;
+  height: 100%;
+  width: 375px;
+  background-color: var(--background-color, white);
+`;
+
 function App() {
   return (
     <Router>

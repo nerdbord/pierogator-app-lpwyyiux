@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Container } from "../App";
+import { Container, MobileSimulator } from "../App";
 import Logo from "../assets/Header.svg";
 import { CtaButton } from "../components/CtaButton";
 import DumplingSection from "../components/DumplingSection";
@@ -26,13 +26,13 @@ export default function DumplingRecipePage(props: DumplingRecipePageProps) {
     navigate(props.configPath);
   };
   return (
-    <>
+    <MobileSimulator>
       <Header src={Logo} alt="logo"></Header>
       <Container>
         <DumplingSection buttonText="zmień" buttonAction={handleDumplingChangeRequest}></DumplingSection>
         <RecipeSection></RecipeSection>
         {generatedDumplingImage && <CtaButton onClick={handleDumplingShare}>Udostępnij Pieroga</CtaButton>}
       </Container>
-    </>
+    </MobileSimulator>
   );
 }

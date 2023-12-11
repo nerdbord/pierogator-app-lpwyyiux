@@ -12,7 +12,6 @@ export default function useShareDumpling() {
     return axios
       .post(url, recipe, { headers })
       .then((response) => {
-        console.log(response);
         return response.data;
       })
       .catch((error) => {

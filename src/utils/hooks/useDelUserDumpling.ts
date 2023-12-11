@@ -9,7 +9,6 @@ export default function useDelUserDumpling(id: number) {
     return axios
       .delete(`https://training.nerdbord.io/api/v1/pierogator/dumpling-recipes/${id}`, { headers })
       .then((response) => {
-        console.log(response);
         return response.data;
       })
       .catch((error) => {

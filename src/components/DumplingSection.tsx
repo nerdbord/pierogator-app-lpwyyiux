@@ -39,7 +39,7 @@ export const LogoBtnWrapper = styled.div`
 
 export const ImageDumpling = styled.img`
   width: 100%;
-  height: calc((100dvw - 32px) * 0.679);
+  height: calc((375px - 32px) * 0.679);
 
   object-fit: cover;
   object-position: 50% 50%;

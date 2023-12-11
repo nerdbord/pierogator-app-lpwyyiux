@@ -10,6 +10,9 @@ const useAiGeneratedDumpling = () => {
     doughLockView,
     fillingLockView,
     ingredientsLockView,
+    setDoughChanged,
+    setFillingChanged,
+    setIngredientsChanged,
   } = useStore();
 
   const generateGptResponse = async () => {
@@ -20,12 +23,13 @@ const useAiGeneratedDumpling = () => {
       messages: [
         {
           role: "system",
-          content: "You are a helpful assistant.",
+          content:
+            "Return only data according to this object schema {ciasto: string, nadzienie: string, skladniki: string}, in JSON format without any placeholders or ellipses.",
         },
         {
           role: "user",
           content:
-            "Potrzebuję pomysłów na rodzaje ciasta i nadzienia do pierogów. Proszę podaj różne opcje ciasta oraz propozycje nadzienia np ciasto jasne / ciemne itp, nadzieni to np wegańskie, mięsne, serowe a składniki np kapusta, truskawki, cebula, ser itp. Nie podawaj przepisu jak to przygotować tylko podaj takie kompozycje, np ciasto: jasne , nadzienie: wegańskie, składniki: cebula,ser,pieprz.",
+            "Podaj mi losową propozycję ciasta (opisane przymiotnikami, np. elastyczne ciasto, francuskie), nadzienia (np. 'z...', inspiruj się typowymi farszami pierogów), i skladnikow jakie mógłbym wykorzystać do zrobienia pierogów. Zwróć tylko obiekt",
         },
       ],
     };
@@ -38,15 +42,21 @@ const useAiGeneratedDumpling = () => {
         },
       });
 
-      const chatResponse = response.data.choices[0].message.content;
+      const chatResponse = JSON.parse(`${response.data.choices[0].message.content}`);
+      console.log(chatResponse);
 
-      const firstSetRegex = /1\.\sCiasto:\s(.*?)\s+Nadzienie:\s(.*?)\s+Składniki:\s(.*?)(?=\n|$)/;
-
-      const match = firstSetRegex.exec(chatResponse);
-
-      if (match && !doughLockView) setDough(match[1].trim());
-      if (match && !fillingLockView) setFilling(match[2].trim());
-      if (match && !ingredientsLockView) setIngredients(match[3].trim());
+      if (!doughLockView) {
+        setDough(chatResponse.ciasto);
+        setDoughChanged(true);
+      }
+      if (!fillingLockView) {
+        setFilling(chatResponse.nadzienie);
+        setFillingChanged(true);
+      }
+      if (!ingredientsLockView) {
+        setIngredients(chatResponse.skladniki);
+        setIngredientsChanged(true);
+      }
     } catch (error) {
       console.error("Błąd podczas generowania odpowiedzi GPT:", error);
     } finally {

@@ -26,7 +26,6 @@ export default function useDumplingNameGenerator() {
     return axios
       .post("https://training.nerdbord.io/api/v1/openai/chat/completions", requestData, { headers })
       .then((response) => {
-        console.log("Response:", response.data.choices[0].message.content);
         setDumplingName(response.data.choices[0].message.content);
         return response.data;
       })

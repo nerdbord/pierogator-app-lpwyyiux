@@ -41,18 +41,18 @@ interface ingredients {
    dough: Ingredient[];
    filling: Ingredient[];
  }
- Take into account information passed by user in notes, e.g if user want vegeterian dumplings, remove meat.
- Don't numerate data inside arrays.
- dough_preparation should contain instructions how to prepare dough provided from user, take into account notes aswell if they'll be useful. 
- filling_preparation should contain instructions how to prepare filling provided from user, take into account notes aswell if they'll be useful.
- forming_and_cooking_dumplings should contain instructions how to form and cook dumplings from user filling and dough, take into account notes aswell if they'll be useful.
- serving should contain information how dumplings should be served to the customers.
- Returned response should contain only recipeInstructions typescript object in JSON format.
+
+ dough_preparation array should contain instructions how to prepare dough provided from user, take into account notes aswell if they'll be useful. 
+ filling_preparation array should contain instructions how to prepare filling provided from user, take into account notes aswell if they'll be useful.
+ forming_and_cooking_dumplings array should contain instructions how to form and cook dumplings from user filling and dough, take into account notes aswell if they'll be useful.
+ serving array should contain information how dumplings should be served to the customers.
+steps inside dough_preparation, filling_preparation, forming_and_cooking_dumplings and serving should be in polish.
+ Returned response should contain only recipeInstructions typescript object in JSON format without any placeholders or ellipses.
 `,
       },
       {
         role: "user",
-        content: `dough: ${dough}, filling: ${filling}, ingredients: ${recipeIngredients}, notes: ${notes}`,
+        content: `dough: ${dough}, filling: ${filling}, ingredients: ${recipeIngredients}, notes: ${notes}.`,
       },
     ],
   };
@@ -65,7 +65,6 @@ interface ingredients {
   return axios
     .post("https://training.nerdbord.io/api/v1/openai/chat/completions", requestData, { headers })
     .then((response) => {
-      console.log("Response:", response.data.choices[0].message.content);
       return response.data.choices[0].message.content;
     })
     .catch((error) => {

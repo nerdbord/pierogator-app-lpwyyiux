@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Container } from "../App";
+import { Container, MobileSimulator } from "../App";
 import Logo from "../assets/Header.svg";
 import { CtaButton } from "../components/CtaButton";
 import DumplingSection from "../components/DumplingSection";
@@ -10,7 +10,7 @@ import useDumplingGenerator from "../utils/hooks/useDumplingsGenerator";
 export default function ConfigDumplingPage() {
   const { generatedDumplingImage, isLoadingRecipe } = useStore();
   const navigate = useNavigate();
-  const handleDumplingCreation = async () => {
+  const handleDumplingCreation = () => {
     navigate("/recipe");
   };
   const generateDumpling = useDumplingGenerator();
@@ -20,7 +20,7 @@ export default function ConfigDumplingPage() {
     generateDumplingName();
   };
   return (
-    <>
+    <MobileSimulator>
       <Header src={Logo} alt="logo" />
       <Container>
         <MainHeader />
@@ -30,6 +30,6 @@ export default function ConfigDumplingPage() {
           <CtaButton onClick={handleDumplingCreation}>Zapisz i przejdź do tworzenia przepisu</CtaButton>
         )}
       </Container>
-    </>
+    </MobileSimulator>
   );
 }

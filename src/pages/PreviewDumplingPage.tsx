@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import styled from "styled-components";
-import { Container } from "../App";
+import { Container, MobileSimulator } from "../App";
 import Logo from "../assets/Header.svg";
 import {
   CustomInputDumplingName,
@@ -50,7 +50,7 @@ export default function PreviewDumplingPage() {
     navigate("/gallery");
   };
   return (
-    <>
+    <MobileSimulator>
       <Header src={Logo} alt="logo" />
       <Container>
         <DumplingSectionWrapper>
@@ -107,6 +107,6 @@ export default function PreviewDumplingPage() {
           )}
         </RecipeContainer>
       </Container>
-    </>
+    </MobileSimulator>
   );
 }

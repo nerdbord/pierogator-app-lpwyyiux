@@ -8,7 +8,6 @@ export default function useGetAllDumplings() {
     return axios
       .get("https://training.nerdbord.io/api/v1/pierogator/dumpling-recipes", { headers })
       .then((response) => {
-        console.log(response.data);
         return response.data.recipes;
       })
       .catch((error) => {

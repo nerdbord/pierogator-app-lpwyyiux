@@ -138,6 +138,12 @@ const MainHeader = () => {
     ingredientsLockView,
     filling,
     isLoadingDumplings,
+    doughChanged,
+    setDoughChanged,
+    fillingChanged,
+    setFillingChanged,
+    ingredientsChanged,
+    setIngredientsChanged,
   } = useStore();
 
   return (
@@ -165,6 +171,8 @@ const MainHeader = () => {
               value={dough}
               disabled={doughLockView}
               setValue={setDough}
+              configValChanged={doughChanged}
+              setConfigValChanged={setDoughChanged}
               id="customInput1"
               placeholder="Wpisz, wygeneruj lub pozostaw puste."
               padding="0px"
@@ -184,6 +192,8 @@ const MainHeader = () => {
               value={filling}
               disabled={fillingLockView}
               setValue={setFilling}
+              configValChanged={fillingChanged}
+              setConfigValChanged={setFillingChanged}
               id="customInput2"
               placeholder="Wpisz, wygeneruj lub pozostaw puste."
               padding="0px"
@@ -203,6 +213,8 @@ const MainHeader = () => {
               value={ingredients}
               disabled={ingredientsLockView}
               setValue={setIngredients}
+              configValChanged={ingredientsChanged}
+              setConfigValChanged={setIngredientsChanged}
               id="customInput3"
               placeholder="Wpisz, wygeneruj lub pozostaw puste."
               padding="0px"

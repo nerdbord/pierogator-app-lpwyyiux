@@ -60,19 +60,11 @@ export default async function generateRecipeIngredients({
 
   return axios
 
-    .post(
-      "https://training.nerdbord.io/api/v1/openai/chat/completions",
-      requestData,
-      { headers }
-    )
+    .post("https://training.nerdbord.io/api/v1/openai/chat/completions", requestData, { headers })
     .then((response) => {
-      console.log("Response:", response.data.choices[0].message.content);
       return response.data.choices[0].message.content;
     })
     .catch((error) => {
-      console.error(
-        "Error:",
-        error.response ? error.response.data : error.message
-      );
+      console.error("Error:", error.response ? error.response.data : error.message);
     });
 }
