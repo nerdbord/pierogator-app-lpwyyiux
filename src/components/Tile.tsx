@@ -38,10 +38,10 @@ export default function Tile(props: TileProps) {
   const handleOpenClick = () => {
     navigate(`/dumpling_preview/${props.data._id}`);
   };
-  // const handleDumplingDelete = async () => {
-  //   const deleteDumpling = useDelUserDumpling(props.data._id);
-  //   await deleteDumpling();
-  // };
+
+  const TileH3 = styled.h3`
+    color: var(--dark-green, #002902);
+  `;
 
   useEffect(() => {
     if (imageRef.current !== null) {
@@ -59,7 +59,7 @@ export default function Tile(props: TileProps) {
           height: `${imageHeight}`,
         }}
       ></MiniImage>
-      <h3>{props.data.name.length > 40 ? props.data.name : props.data.name.slice(0, 40)}</h3>
+      <TileH3>{props.data.name.length > 40 ? props.data.name : props.data.name.slice(0, 40)}</TileH3>
       {props.editable && (
         <TileInterface>
           <GenerateButton onClick={handleOpenClick}>Otwórz</GenerateButton>

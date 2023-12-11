@@ -9,7 +9,7 @@ export default function useDumplingNameGenerator() {
       messages: [
         {
           role: "system",
-          content: `Stwórz artystyczną nazwę dla pierogów inspirując się podanymi przez użytkownika opisami ciasta, farszu i składników, zwróć tylko stworzoną nazwę`,
+          content: `Stwórz artystyczną nazwę dla pierogów inspirując się podanymi przez użytkownika opisami ciasta, farszu i składników, zwróć tylko stworzoną nazwę, bez placeholderów i elippsis`,
         },
         {
           role: "user",
@@ -26,7 +26,11 @@ export default function useDumplingNameGenerator() {
     return axios
       .post("https://training.nerdbord.io/api/v1/openai/chat/completions", requestData, { headers })
       .then((response) => {
-        setDumplingName(response.data.choices[0].message.content);
+        setDumplingName(
+          response.data.choices[0].message.content.length < 40
+            ? response.data.choices[0].message.content
+            : response.data.choices[0].message.content.slice(0, 40)
+        );
         return response.data;
       })
       .catch((error) => {

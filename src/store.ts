@@ -33,9 +33,11 @@ interface StoreState {
   dumplingNotes: string;
   setDumplingNotes: (dumplingNotes: string) => void;
   recipe: DumplingRecipe | null;
-  setRecipe: (recipe: DumplingRecipe) => void;
+  setRecipe: (recipe: DumplingRecipe | null) => void;
   previewedDumpling: DBRecipe | null;
   setPreviewedDumpling: (previewedDumplingRecipe: DBRecipe) => void;
+  incompleteFieldsError: string;
+  setIncompleteFieldsError: (error: string) => void;
 }
 
 export const useStore = create<StoreState>((set) => ({
@@ -70,9 +72,11 @@ export const useStore = create<StoreState>((set) => ({
   dumplingNotes: "",
   setDumplingNotes: (dumplingNotes: string) => set({ dumplingNotes }),
   recipe: null,
-  setRecipe: (recipe: DumplingRecipe) => set({ recipe }),
+  setRecipe: (recipe: DumplingRecipe | null) => set({ recipe }),
   previewedDumpling: null,
   setPreviewedDumpling: (previewedDumpling: DBRecipe) => set({ previewedDumpling }),
+  incompleteFieldsError: "",
+  setIncompleteFieldsError: (incompleteFieldsError: string) => set({ incompleteFieldsError }),
 }));
 
 type DBRecipe = DumplingRecipe & {

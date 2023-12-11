@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { device } from "../../GlobalStyles";
+import { useStore } from "../../store";
 
 export const CustomTextarea = styled.textarea`
   color: var(--dark-green, #002902);
@@ -45,8 +46,9 @@ export interface TextAreaProps {
 export default function TextArea(props: TextAreaProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [rows, setRows] = useState(props.rowsOnStart || 1);
-
+  const { setIncompleteFieldsError } = useStore();
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setIncompleteFieldsError("");
     const textarea = event.target;
     textarea.style.height = "fit-content"; // Reset values for recalculations
     textarea.style.padding = "0";
@@ -64,6 +66,7 @@ export default function TextArea(props: TextAreaProps) {
   };
 
   const handleOutsideInputChange = (value: string) => {
+    setIncompleteFieldsError("");
     const textarea = textareaRef.current;
     if (textarea !== null) {
       textarea.style.height = "fit-content"; // Reset values for recalculations

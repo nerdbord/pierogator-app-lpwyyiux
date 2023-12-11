@@ -8,16 +8,35 @@ import { useStore } from "../store";
 import useDumplingNameGenerator from "../utils/hooks/useDumplingNameGenerator";
 import useDumplingGenerator from "../utils/hooks/useDumplingsGenerator";
 export default function ConfigDumplingPage() {
-  const { generatedDumplingImage, isLoadingRecipe } = useStore();
+  const {
+    generatedDumplingImage,
+    isLoadingRecipe,
+    setGeneratedDumplingImage,
+    setDumplingName,
+    dough,
+    filling,
+    ingredients,
+    setIncompleteFieldsError,
+  } = useStore();
   const navigate = useNavigate();
   const handleDumplingCreation = () => {
     navigate("/recipe");
   };
   const generateDumpling = useDumplingGenerator();
   const generateDumplingName = useDumplingNameGenerator();
-  const generateDumplingData = () => {
-    generateDumpling();
-    generateDumplingName();
+  const generateDumplingData = async () => {
+    if (dough === "" || filling === "" || ingredients === "") {
+      setIncompleteFieldsError(
+        `Proszę wypełnij pola: ${dough === "" && "Ciasto"} ${filling === "" && "Nadzienie"} ${
+          ingredients === "" && "Składniki"
+        } przed generacją obrazu tych pierogów`
+      );
+    } else {
+      setGeneratedDumplingImage("");
+      setDumplingName("");
+      generateDumplingName();
+      generateDumpling();
+    }
   };
   return (
     <MobileSimulator>

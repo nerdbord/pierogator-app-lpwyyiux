@@ -40,12 +40,14 @@ const RecipeInstructionsWrapper = styled.div`
 `;
 export const RecipeTitle = styled.h3`
   font-weight: 700;
+  color: var(--dark-green, #002902);
   &::first-letter {
     text-transform: uppercase;
   }
 `;
 export const RecipeListItem = styled.div`
   line-height: 20px;
+  color: var(--dark-green, #002902);
 `;
 
 // It's really unelegant but it works, and time is precious here.

@@ -75,7 +75,7 @@ export const GenerateButton = styled.button`
   }
 `;
 
-const CustomInputContainer = styled.div`
+const CustomInputContainer = styled.label`
   display: flex;
   align-items: flex-start;
   border: 1px solid var(--gray-light, #e8e8e8);
@@ -144,6 +144,7 @@ const MainHeader = () => {
     setFillingChanged,
     ingredientsChanged,
     setIngredientsChanged,
+    setIncompleteFieldsError,
   } = useStore();
 
   return (
@@ -156,7 +157,14 @@ const MainHeader = () => {
           </TitleWrapper>
           <LogoBtnWrapper>
             {isLoadingDumplings && <Loader />}
-            <GenerateButton onClick={generateGptResponse}>Generuj</GenerateButton>
+            <GenerateButton
+              onClick={() => {
+                generateGptResponse();
+                setIncompleteFieldsError("");
+              }}
+            >
+              Generuj
+            </GenerateButton>
           </LogoBtnWrapper>
         </IngredientsComponent>
         <InputContainer>
@@ -175,7 +183,7 @@ const MainHeader = () => {
             />
             <TextArea
               value={dough}
-              disabled={doughLockView}
+              disabled={doughLockView || isLoadingDumplings}
               setValue={setDough}
               configValChanged={doughChanged}
               setConfigValChanged={setDoughChanged}
@@ -202,7 +210,7 @@ const MainHeader = () => {
             />
             <TextArea
               value={filling}
-              disabled={fillingLockView}
+              disabled={fillingLockView || isLoadingDumplings}
               setValue={setFilling}
               configValChanged={fillingChanged}
               setConfigValChanged={setFillingChanged}
@@ -231,7 +239,7 @@ const MainHeader = () => {
             />
             <TextArea
               value={ingredients}
-              disabled={ingredientsLockView}
+              disabled={ingredientsLockView || isLoadingDumplings}
               setValue={setIngredients}
               configValChanged={ingredientsChanged}
               setConfigValChanged={setIngredientsChanged}

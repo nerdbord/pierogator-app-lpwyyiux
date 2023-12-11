@@ -49,7 +49,7 @@ export default function RecipeSection() {
             setValue={setDumplingNotes}
             placeholder="Przykład: chrupiące pierogi bez pieczenia, bez użycia miksera, przyjazne weganom"
             id="recipeInput"
-            disabled={false}
+            disabled={isLoadingRecipe}
             padding={"16px"}
             border={`1px solid var(--gray-light, #e8e8e8)`}
             rowsOnStart={2}
