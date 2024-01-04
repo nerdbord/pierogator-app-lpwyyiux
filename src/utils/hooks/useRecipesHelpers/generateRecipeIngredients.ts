@@ -55,12 +55,12 @@ export default async function generateRecipeIngredients({
 
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `${import.meta.env.VITE_REACT_APP_OPENAI_KEY}`,
+    Authorization: `Bearer ${import.meta.env.VITE_REACT_APP_OPENAI_KEY}`,
   };
 
   return axios
 
-    .post("https://training.nerdbord.io/api/v1/openai/chat/completions", requestData, { headers })
+    .post("https://api.openai.com/v1/chat/completions", requestData, { headers })
     .then((response) => {
       return response.data.choices[0].message.content;
     })

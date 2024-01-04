@@ -51,10 +51,10 @@ const useAiGeneratedDumpling = () => {
     };
 
     try {
-      const response = await axios.post("https://training.nerdbord.io/api/v1/openai/chat/completions", data, {
+      const response = await axios.post("https://api.openai.com/v1/chat/completions", data, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `${import.meta.env.VITE_REACT_APP_OPENAI_KEY}`,
+          Authorization: `Bearer ${import.meta.env.VITE_REACT_APP_OPENAI_KEY}`,
         },
       });
 
